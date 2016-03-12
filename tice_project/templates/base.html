@@ -1,111 +1,187 @@
 {% load staticfiles i18n %}<!DOCTYPE html>
 <html lang="en" ng-app>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{% block title %}tice_django{% endblock title %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{% block title %}tice_django{% endblock title %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+  <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 
-    {% block css %}
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+  {% block css %}
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="{% static 'css/materialize.css'%}">
+  <link rel="stylesheet" href="{% static 'css/materialize.min.css'%}">
+  <!-- Your stuff: Third-party css libraries go here -->
 
-    <!-- Your stuff: Third-party css libraries go here -->
+  <!-- This file store project specific CSS -->
+  <link rel="stylesheet" href="{% static 'css/style.css'%}">
 
-    <!-- This file store project specific CSS -->
-    <link href="{% static 'css/project.css' %}" rel="stylesheet">
-    {% endblock %}
+  {% endblock %}
 
-    {% block angular %}
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-    {% endblock %}
+  {% block angular %}
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  {% endblock %}
+  <script src="{% static 'js/materialize.js'%}"></script>
+</head>
 
-  </head>
+<body>
 
-  <body>
+<nav id="main-nav">
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo">Tice_Django</a>
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="{% url 'home' %}">Home</a></li>
 
-    <div class="m-b">
-      <nav class="navbar navbar-dark navbar-static-top bg-inverse">
-        <div class="container">
-          <a class="navbar-brand" href="/">tice_django</a>
-          <button type="button" class="navbar-toggler hidden-sm-up pull-xs-right" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
-            &#9776;
-          </button>
-
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-toggleable-xs" id="bs-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">About</a>
-              </li>
-            </ul>
-
-            <ul class="nav navbar-nav pull-xs-right">
-              {% if request.user.is_authenticated %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
-                </li>
-              {% else %}
-                <li class="nav-item">
-                  <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
-                </li>
-                <li class="nav-item">
-                  <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% trans "Log In" %}</a>
-                </li>
-              {% endif %}
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-
-    <div class="container">
-
-      {% if messages %}
-          {% for message in messages %}
-              <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
-          {% endfor %}
+      <li><a href="{% url 'about' %}">About</a></li>
+    </ul>
+    <ul class="right hide-on-med-and-down">
+      {% if request.user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
+      </li>
+      <li class="nav-item">
+        <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% trans "Log In" %}</a>
+      </li>
       {% endif %}
+    </ul>
+    <!--todo: Add side nav-->
+    <ul class="side-nav" id="mobile-demo">
+      {% if request.user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'account_login' %}">{% trans "Log In" %}</a>
+      </li>
+      {% endif %}
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'about' %}">About</a></li>
+      {% if request.user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
 
-      {% block content %}
-        <p>Use this document as a way to quick start any new project.</p>
-      {% endblock content %}
+<!--<div class="m-b">
+  <nav class="navbar navbar-dark navbar-static-top bg-inverse">
+    <div class="container">
+      <a class="navbar-brand" href="/">tice_django</a>
+      <button type="button" class="navbar-toggler hidden-sm-up pull-xs-right" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+        &#9776;
+      </button>
 
-    </div> <!-- /container -->
+      &lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;
+      <div class="collapse navbar-toggleable-xs" id="bs-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+          </li>
+        </ul>
 
-    {% block modal %}{% endblock modal %}
+        <ul class="nav navbar-nav pull-xs-right">
+          {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
+            </li>
+            <li class="nav-item">
+              <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% trans "Log In" %}</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>-->
+<main>
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    {% block javascript %}
-      <!-- Latest JQuery -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
-      <!-- Tether - a requirement for Bootstrap tooltips -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+  {% endfor %}
+  {% endif %}
 
-      <!-- Latest compiled and minified JavaScript -->
-      <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+  {% block content %}
+  {% endblock content %}
 
-      <!-- Your stuff: Third-party javascript libraries go here -->
+</main>
+{% block footer%}
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Footer Content</h5>
+        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                </ul>
+              </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2016 Copyright Text
+    </div>
+  </div>
+</footer>
+{% endblock footer%}
 
-      <!-- place project specific Javascript in this file -->
-      <script src="{% static 'js/project.js' %}"></script>
-    {% endblock javascript %}
-  </body>
+{% block modal %}{% endblock modal %}
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{% block javascript %}
+<!-- Latest JQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+
+<!-- Your stuff: Third-party javascript libraries go here -->
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
+
+<!-- place project specific Javascript in this file -->
+<script src="{% static 'js/project.js' %}"></script>
+<script src="{% static 'js/init.js' %}"></script>
+
+{% endblock javascript %}
+</body>
 </html>
- 
+
