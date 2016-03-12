@@ -5,7 +5,7 @@ from gestion.views import HomeView
 
 urlpatterns = [
     url(
-        regex=r'^index/$',
+        regex=r'^$',
         view=HomeView.as_view(),
         name='index'
     ),

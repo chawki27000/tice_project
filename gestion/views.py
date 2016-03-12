@@ -8,7 +8,7 @@ from django.views.generic import TemplateView
 
 
 class HomeView(TemplateView):
-    template_name = ""
+    template_name = "base.html"
 
 
 def user_login(request):
@@ -28,4 +28,4 @@ def user_login(request):
                 return HttpResponse('Invalid login')
     else:
         form = LoginForm()
-        return render(request, '', {'form': form})
+        return render(request, 'gestion/login.html', {'form': form})
