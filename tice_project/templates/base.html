@@ -1,7 +1,6 @@
 {% load staticfiles i18n %}<!DOCTYPE html>
 <html lang="en" ng-app>
 <head>
-<<<<<<< HEAD
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>{% block title %}tice_django{% endblock title %}</title>
@@ -9,53 +8,21 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-  <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-
   {% block css %}
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="{% static 'css/materialize.css'%}">
-  <link rel="stylesheet" href="{% static 'css/materialize.min.css'%}">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+
   <!-- Your stuff: Third-party css libraries go here -->
 
   <!-- This file store project specific CSS -->
-  <link rel="stylesheet" href="{% static 'css/style.css'%}">
-
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
   {% endblock %}
-
-  {% block angular %}
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-  {% endblock %}
-  <script src="{% static 'js/materialize.js'%}"></script>
-=======
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{% block title %}tice_django{% endblock title %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    {% block css %}
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
-
-        <!-- Your stuff: Third-party css libraries go here -->
-
-        <!-- This file store project specific CSS -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    {% endblock %}
-
-
->>>>>>> 86c4ec2a2a087ce0082f93bde347292941ecb08d
 </head>
 
 <body>
 
-<<<<<<< HEAD
 <nav id="main-nav">
   <div class="nav-wrapper">
     <a href="#!" class="brand-logo">Tice_Django</a>
@@ -156,39 +123,90 @@
   {% endfor %}
   {% endif %}
 
+
   {% block content %}
-  {% endblock content %}
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">verified_user</i></h2>
+            <h5 class="center">Site securise</h5>
+
+            <p class="light">Avec Django le celebre framework Python offrant des bibliotheques
+              les plus moderne en matiere de securite.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">polymer</i></h2>
+            <h5 class="center">Material Design by Google</h5>
+
+            <p class="light">notre design repose sur la philosophie Flat Design de google, avec
+              un decor epure et beau.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">alarm_on</i></h2>
+            <h5 class="center">Systeme de notification</h5>
+
+            <p class="light">(En developpement) Un système de notification pour connaitre connaitre
+              en temps reel les nouveautes.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {% endblock %}
+  <br><br>
+
+  <div class="section">
+
+  </div>
 
 </main>
-{% block footer%}
-<footer class="page-footer">
+<footer class="page-footer orange">
   <div class="container">
     <div class="row">
       <div class="col l6 s12">
-        <h5 class="white-text">Footer Content</h5>
-        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+        <h5 class="white-text">Team Open Mind</h5>
+        <p class="grey-text text-lighten-4">Developpe par des etudiant pour les etudiants</p>
+
+
       </div>
-      <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-                </ul>
-              </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Settings</h5>
+        <ul>
+          <li><a class="white-text" href="#!">Link 1</a></li>
+          <li><a class="white-text" href="#!">Link 2</a></li>
+          <li><a class="white-text" href="#!">Link 3</a></li>
+          <li><a class="white-text" href="#!">Link 4</a></li>
+        </ul>
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Connect</h5>
+        <ul>
+          <li><a class="white-text" href="#!">Link 1</a></li>
+          <li><a class="white-text" href="#!">Link 2</a></li>
+          <li><a class="white-text" href="#!">Link 3</a></li>
+          <li><a class="white-text" href="#!">Link 4</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="footer-copyright">
     <div class="container">
-      © 2016 Copyright Text
+      Developed by <a class="orange-text text-lighten-3" href="http://materializecss.com">Team Open Mind</a>
     </div>
   </div>
 </footer>
-{% endblock footer%}
-
 {% block modal %}{% endblock modal %}
-
 <!-- Le javascript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
@@ -196,140 +214,12 @@
 <!-- Latest JQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-
 <!-- Your stuff: Third-party javascript libraries go here -->
-<!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
 
 <!-- place project specific Javascript in this file -->
 <script src="{% static 'js/project.js' %}"></script>
+<script src="{% static 'js/materialize.js' %}"></script>
 <script src="{% static 'js/init.js' %}"></script>
-
-=======
-<nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">TICE Project</a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="#">Se connecter</a></li>
-        </ul>
-
-        <ul id="nav-mobile" class="side-nav">
-            <li><a href="#">Navbar Link</a></li>
-        </ul>
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-</nav>
-<div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-        <br><br>
-        <h1 class="header center orange-text">Version de developpement</h1>
-        <div class="row center">
-            <h5 class="header col s12 light">Une plateforme OpenSource pour la gestion des etudiants</h5>
-        </div>
-        <div class="row center">
-            <a href="http://materializecss.com/getting-started.html" id="download-button"
-               class="btn-large waves-effect waves-light orange">Nous rejoindre</a>
-        </div>
-        <br><br>
-
-    </div>
-</div>
-
-
-<div class="container">
-    {% block content %}
-    <div class="section">
-
-        <!--   Icon Section   -->
-        <div class="row">
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">verified_user</i></h2>
-                    <h5 class="center">Site securise</h5>
-
-                    <p class="light">Avec Django le celebre framework Python offrant des bibliotheques
-                        les plus moderne en matiere de securite.</p>
-                </div>
-            </div>
-
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">polymer</i></h2>
-                    <h5 class="center">Material Design by Google</h5>
-
-                    <p class="light">notre design repose sur la philosophie Flat Design de google, avec
-                    un decor epure et beau.</p>
-                </div>
-            </div>
-
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">alarm_on</i></h2>
-                    <h5 class="center">Systeme de notification</h5>
-
-                    <p class="light">(En developpement) Un système de notification pour connaitre connaitre
-                        en temps reel les nouveautes.</p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    {% endblock %}
-    <br><br>
-
-    <div class="section">
-
-    </div>
-</div>
-
-<footer class="page-footer orange">
-    <div class="container">
-        <div class="row">
-            <div class="col l6 s12">
-                <h5 class="white-text">Team Open Mind</h5>
-                <p class="grey-text text-lighten-4">Developpe par des etudiant pour les etudiants</p>
-
-
-            </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">Settings</h5>
-                <ul>
-                    <li><a class="white-text" href="#!">Link 1</a></li>
-                    <li><a class="white-text" href="#!">Link 2</a></li>
-                    <li><a class="white-text" href="#!">Link 3</a></li>
-                    <li><a class="white-text" href="#!">Link 4</a></li>
-                </ul>
-            </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">Connect</h5>
-                <ul>
-                    <li><a class="white-text" href="#!">Link 1</a></li>
-                    <li><a class="white-text" href="#!">Link 2</a></li>
-                    <li><a class="white-text" href="#!">Link 3</a></li>
-                    <li><a class="white-text" href="#!">Link 4</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container">
-            Developed by <a class="orange-text text-lighten-3" href="http://materializecss.com">Team Open Mind</a>
-        </div>
-    </div>
-</footer>
-
-<!-- Le javascript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-{% block javascript %}
-    <!-- Latest JQuery -->
-
-    <!-- Your stuff: Third-party javascript libraries go here -->
-
-    <!-- place project specific Javascript in this file -->
-    <script src="{% static 'js/project.js' %}"></script>
-    <script src="{% static 'js/materialize.js' %}"></script>
-    <script src="{% static 'js/init.js' %}"></script>
->>>>>>> 86c4ec2a2a087ce0082f93bde347292941ecb08d
 {% endblock javascript %}
 </body>
 </html>
