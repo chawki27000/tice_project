@@ -9,6 +9,7 @@ Local settings
 '''
 import os
 from .common import *  # noqa
+from django.core.urlresolvers import reverse_lazy
 
 # DEBUG
 
@@ -71,3 +72,7 @@ DATABASES = {
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 # Your local stuff: Below this line define 3rd party library settings
+
+LOGIN_REDIRECT_URL = reverse_lazy('gestion:dashboard')
+LOGIN_URL = reverse_lazy('gestion:login')
+LOGOUT_URL = reverse_lazy('gestion:logout')

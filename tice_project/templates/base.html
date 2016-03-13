@@ -1,5 +1,5 @@
 {% load staticfiles i18n %}<!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="fr" ng-app>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -37,8 +37,10 @@
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
 </nav>
+
 <div class="section no-pad-bot" id="index-banner">
     <div class="container">
+        {% block content %}
         <br><br>
         <h1 class="header center orange-text">Version de developpement</h1>
         <div class="row center">
@@ -55,7 +57,7 @@
 
 
 <div class="container">
-    {% block content %}
+
     <div class="section">
 
         <!--   Icon Section   -->

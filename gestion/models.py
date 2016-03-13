@@ -34,7 +34,7 @@ class Administrateur(models.Model):
     grade_util = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.user.last_name
+        return '{} {}'.format(self.user.first_name, self.user.last_name)
 
     def __unicode__(self):
         return "Profil de {0}".format(self.user.username)
@@ -47,7 +47,7 @@ class Formateur(models.Model):
     type_formation = models.CharField(max_length=80)
 
     def __str__(self):
-        return self.user.last_name
+        return '{} {}'.format(self.user.first_name, self.user.last_name)
 
 
 # Classe ORM Categorie
@@ -78,7 +78,7 @@ class Apprenant(models.Model):
     formation = models.ForeignKey('Formation')
 
     def __str__(self):
-        return self.user.last_name
+        return '{} {}'.format(self.user.first_name, self.user.last_name)
 
 
 # Classe ORM Regroupement
@@ -124,7 +124,8 @@ class Animer(TimeStampedModel):
     id_form = models.ForeignKey('Formation')
 
     def __str__(self):
-        return str(self.id_util)
+        return '{} - {}'.format(self.id_util.user.last_name,
+                                self.id_form.lib_form)
 
 
 # Classe ORM Test
@@ -136,4 +137,5 @@ class Test(TimeStampedModel):
     note_test = models.IntegerField()
 
     def __str__(self):
-        return str(self.date_test)
+        return '{} - {}'.format(self.id_form.lib_form,
+                                self.date_test)
