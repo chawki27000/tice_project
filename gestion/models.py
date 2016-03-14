@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.contrib.auth.models import User
 from django.db import models
 from django.conf import settings
 
 
 # Create your models here.
+from tice_project.users.models import User
+
 
 class TimeStampedModel(models.Model):
     created = models.DateTimeField(auto_now_add=True)
@@ -30,7 +31,7 @@ class Administrateur(models.Model):
     last_login : date de la derniere connexion
     date_joined : date de la premiere connexion
     """
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)  # La liaison OneToOne vers le modèle User
+    user = models.OneToOneField(User)  # La liaison OneToOne vers le modèle User
     grade_util = models.CharField(max_length=50)
 
     def __str__(self):
@@ -42,7 +43,7 @@ class Administrateur(models.Model):
 
 # Classe ORM Formateur
 class Formateur(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)  # La liaison OneToOne vers le modèle User
+    user = models.OneToOneField(User)  # La liaison OneToOne vers le modèle User
     spec_formation = models.CharField(max_length=80)
     type_formation = models.CharField(max_length=80)
 
@@ -72,7 +73,7 @@ class Formation(TimeStampedModel):
 
 # Classe ORM Apprenant
 class Apprenant(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)  # La liaison OneToOne vers le modèle User
+    user = models.OneToOneField(User)  # La liaison OneToOne vers le modèle User
     grade_util = models.CharField(max_length=50)
     diplome_appr = models.CharField(max_length=80)
     formation = models.ForeignKey('Formation')

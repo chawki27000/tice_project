@@ -5,6 +5,8 @@
     <form action="." method="post">
         {{ user_form.as_p }}
         {% csrf_token %}
-        <p><input type="submit" value="Create my account"></p>
+        <button class="btn waves-effect waves-light" type="submit">Creer un compte
+    <i class="material-icons right">send</i>
+  </button>
     </form>
 {% endblock %}

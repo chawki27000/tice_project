@@ -1,4 +1,5 @@
-{% load staticfiles i18n %}<!DOCTYPE html>
+{% load staticfiles i18n %}
+<!DOCTYPE html>
 <html lang="fr" ng-app>
 <head>
     <meta charset="utf-8">
@@ -26,9 +27,10 @@
 <body>
 
 <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">TICE Project</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="{% url 'home' %}" 
+        class="brand-logo">TICE Project</a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="#">Se connecter</a></li>
+            <li><a href="{% url "gestion:login" %}">Se connecter</a></li>
         </ul>
 
         <ul id="nav-mobile" class="side-nav">
@@ -47,7 +49,7 @@
             <h5 class="header col s12 light">Une plateforme OpenSource pour la gestion des etudiants</h5>
         </div>
         <div class="row center">
-            <a href="http://materializecss.com/getting-started.html" id="download-button"
+            <a href="{% url 'gestion:register' %}" id="download-button"
                class="btn-large waves-effect waves-light orange">Nous rejoindre</a>
         </div>
         <br><br>

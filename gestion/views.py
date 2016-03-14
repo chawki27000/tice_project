@@ -40,6 +40,7 @@ def dashboard(request):
 
 
 def register(request):
+
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
@@ -52,4 +53,4 @@ def register(request):
             return render(request, 'gestion/register_done.html', {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()
-        return render(request, 'gestion/register.html', {'user_form': user_form})
+    return render(request, 'gestion/register.html', {'user_form': user_form})
