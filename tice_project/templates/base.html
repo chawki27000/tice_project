@@ -20,90 +20,136 @@
         <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
     {% endblock %}
-
-
 </head>
 
 <body>
 
-<nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="{% url 'home' %}" 
-        class="brand-logo">TICE Project</a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="{% url "gestion:login" %}">Se connecter</a></li>
-        </ul>
 
-        <ul id="nav-mobile" class="side-nav">
-            <li><a href="#">Navbar Link</a></li>
+<nav id="main-nav">
+    <div class="nav-wrapper">
+        <a href="{% url "home" %}" class="brand-logo">Projet TICE</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="{% url 'home' %}">Home</a></li>
+
+            <li><a href="{% url 'about' %}">About</a></li>
         </ul>
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{% url 'users:detail' request.user.username %}">{% trans "My Profile" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'gestion:logout' %}">{% trans "Logout" %}</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a id="sign-up-link" class="nav-link" href="{% url 'gestion:register' %}">{% trans "Sign Up" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a id="log-in-link" class="nav-link" href="{% url 'gestion:login' %}">{% trans "Log In" %}</a>
+                </li>
+            {% endif %}
+        </ul>
+        <!--todo: Add side nav-->
+        <ul class="side-nav" id="mobile-demo">
+            {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{% url 'users:detail' request.user.username %}">{% trans "My Profile" %}</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account_login' %}">{% trans "Log In" %}</a>
+                </li>
+            {% endif %}
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
+                </li>
+            {% endif %}
+        </ul>
     </div>
 </nav>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
 
 <div class="section no-pad-bot" id="index-banner">
     <div class="container">
         {% block content %}
+            <br><br>
+            <h1 class="header center orange-text">Version de developpement</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">Une plateforme OpenSource pour la gestion des etudiants</h5>
+            </div>
+            <div class="row center">
+                <a href="{% url 'gestion:register' %}" id="download-button"
+                   class="btn-large waves-effect waves-light orange">Nous rejoindre</a>
+            </div>
+            <br><br>
+
+
+            </div>
+            </div>
+
+            <main>
+
+            <div class="container">
+            <div class="section">
+
+                <!--   Icon Section   -->
+                <div class="row">
+                    <div class="col s12 m4">
+                        <div class="icon-block">
+                            <h2 class="center light-blue-text"><i class="material-icons">verified_user</i></h2>
+                            <h5 class="center">Site securise</h5>
+
+                            <p class="light">Avec Django le celebre framework Python offrant des bibliotheques
+                                les plus moderne en matiere de securite.</p>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m4">
+                        <div class="icon-block">
+                            <h2 class="center light-blue-text"><i class="material-icons">polymer</i></h2>
+                            <h5 class="center">Material Design by Google</h5>
+
+                            <p class="light">notre design repose sur la philosophie Flat Design de google, avec
+                                un decor epure et beau.</p>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m4">
+                        <div class="icon-block">
+                            <h2 class="center light-blue-text"><i class="material-icons">alarm_on</i></h2>
+                            <h5 class="center">Systeme de notification</h5>
+
+                            <p class="light">(En developpement) Un système de notification pour connaitre connaitre
+                                en temps reel les nouveautes.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        {% endblock %}
+        </div>
         <br><br>
-        <h1 class="header center orange-text">Version de developpement</h1>
-        <div class="row center">
-            <h5 class="header col s12 light">Une plateforme OpenSource pour la gestion des etudiants</h5>
-        </div>
-        <div class="row center">
-            <a href="{% url 'gestion:register' %}" id="download-button"
-               class="btn-large waves-effect waves-light orange">Nous rejoindre</a>
-        </div>
-        <br><br>
 
-    </div>
-</div>
+        <div class="section">
 
-
-<div class="container">
-
-    <div class="section">
-
-        <!--   Icon Section   -->
-        <div class="row">
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">verified_user</i></h2>
-                    <h5 class="center">Site securise</h5>
-
-                    <p class="light">Avec Django le celebre framework Python offrant des bibliotheques
-                        les plus moderne en matiere de securite.</p>
-                </div>
-            </div>
-
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">polymer</i></h2>
-                    <h5 class="center">Material Design by Google</h5>
-
-                    <p class="light">notre design repose sur la philosophie Flat Design de google, avec
-                    un decor epure et beau.</p>
-                </div>
-            </div>
-
-            <div class="col s12 m4">
-                <div class="icon-block">
-                    <h2 class="center light-blue-text"><i class="material-icons">alarm_on</i></h2>
-                    <h5 class="center">Systeme de notification</h5>
-
-                    <p class="light">(En developpement) Un système de notification pour connaitre connaitre
-                        en temps reel les nouveautes.</p>
-                </div>
-            </div>
         </div>
 
-    </div>
-    {% endblock %}
-    <br><br>
-
-    <div class="section">
-
-    </div>
-</div>
-
+        </main>
 <footer class="page-footer orange">
     <div class="container">
         <div class="row">
@@ -139,12 +185,13 @@
         </div>
     </div>
 </footer>
-
+{% block modal %}{% endblock modal %}
 <!-- Le javascript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 {% block javascript %}
     <!-- Latest JQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
     <!-- Your stuff: Third-party javascript libraries go here -->
 
