@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Create an account{% endblock %}
 {% block content %}
-    <p>Please, sign up using the following form:</p>
+
+    <h3>Création de compte</h3>
+    <div class="row">
     <form action="." method="post">
         {{ user_form.as_p }}
         {% csrf_token %}
@@ -9,4 +11,5 @@
     <i class="material-icons right">send</i>
   </button>
     </form>
+    </div>
 {% endblock %}

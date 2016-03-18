@@ -4,7 +4,7 @@
 
     <h3>Connexion</h3>
 
-    <div class="form">
+    <div class="form" >
         <form action="{% url 'gestion:login' %}" method="post">
             {{ form.as_p }}
             {% csrf_token %}
