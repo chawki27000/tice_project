@@ -73,7 +73,7 @@
             </ul>
         </div>
     </div>
-
+    {% block content %}
     <div class="android-drawer mdl-layout__drawer">
         <span class="mdl-layout-title">
           <img class="android-logo-image" src="{% static 'images/android-logo-white.png' %}">
@@ -104,6 +104,7 @@
             <a class="mdl-navigation__link" href="">Android SDK</a>
         </nav>
     </div>
+    {% endblock %}
 
     <div class="android-content mdl-layout__content">
         <a name="top"></a>
@@ -156,7 +157,7 @@
         </div>
     </div>
 
-    <script src="{% static 'material.min.js' %}"></script>
+    <script src="{% static 'js/material.min.js' %}"></script>
 
 
 </body>

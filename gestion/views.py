@@ -32,7 +32,7 @@ def user_login(request):
         return render(request, 'registration/login.html', {'form': form})
 
 
-@login_required
+# @login_required
 def dashboard(request):
     return render(request,
                   'gestion/dashboard.html',
