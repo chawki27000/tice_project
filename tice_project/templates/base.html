@@ -19,9 +19,6 @@
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% endblock %}
 
-    {% block javascript %}
-        <script src="{% static 'js/material.min.js' %}"></script>
-    {% endblock %}
 </head>
 
 <body>
@@ -34,7 +31,6 @@
             <div class="mdl-layout__drawer-button" tabindex="0" role="button" aria-expanded="false"><i
                     class="material-icons"></i>
             </div>
-
             <span class="mdl-layout-title">Title</span>
             <!-- Add spacer, to align navigation to the right -->
             <div class="mdl-layout-spacer"></div>
@@ -49,6 +45,7 @@
     </header>
     <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">Title</span>
+
         <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="">Link</a>
             <a class="mdl-navigation__link" href="">Link</a>
@@ -56,7 +53,6 @@
             <a class="mdl-navigation__link" href="">Link</a>
         </nav>
     </div>
-
     <main class="mdl-layout__content">
         <div class="page-content">
             <!-- Your content goes here -->
@@ -72,7 +68,7 @@
     </main>
 
 </div>
-
+    <script src="{% static 'js/material.min.js' %}"></script>
 
 </body>
 </html>
