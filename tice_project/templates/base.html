@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -31,15 +32,23 @@
             <div class="mdl-layout__drawer-button" tabindex="0" role="button" aria-expanded="false"><i
                     class="material-icons"></i>
             </div>
-            <span class="mdl-layout-title">Title</span>
+            <span class="mdl-layout-title">TICE</span>
             <!-- Add spacer, to align navigation to the right -->
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation. We hide it in small screens. -->
             <nav class="mdl-navigation mdl-layout--large-screen-only">
-                <a class="mdl-navigation__link" href="">Link</a>
-                <a class="mdl-navigation__link" href="">Link</a>
-                <a class="mdl-navigation__link" href="">Link</a>
-                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="{% url "home" %}">Home</a>
+                <a class="mdl-navigation__link" href="{% url 'about' %}">About</a>
+            {% if request.user.is_authenticated %}
+                <a class="mdl-navigation__link"
+                   href="{% url 'users:detail' request.user.username %}">{% trans "My Profile" %}</a>
+                <a class="mdl-navigation__link" href="{% url 'gestion:logout' %}">{% trans "Logout" %}</a>
+            {% else %}
+                <a id="sign-up-link" class="mdl-navigation__link"
+                   href="{% url 'gestion:register' %}">{% trans "Sign Up" %}</a>
+                <a id="log-in-link" class="mdl-navigation__link"
+                   href="{% url 'gestion:login' %}">{% trans "Log In" %}</a>
+            {% endif %}
             </nav>
         </div>
     </header>
@@ -47,8 +56,19 @@
         <span class="mdl-layout-title">Title</span>
 
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="{% url "home" %}">Home</a>
+            <a class="mdl-navigation__link" href="{% url 'about' %}">About</a>
+            {% if request.user.is_authenticated %}
+                <a class="mdl-navigation__link"
+                   href="{% url 'users:detail' request.user.username %}">{% trans "My Profile" %}</a>
+                <a class="mdl-navigation__link" href="{% url 'gestion:logout' %}">{% trans "Logout" %}</a>
+            {% else %}
+                <a id="sign-up-link" class="mdl-navigation__link"
+                   href="{% url 'gestion:register' %}">{% trans "Sign Up" %}</a>
+                <a id="log-in-link" class="mdl-navigation__link"
+                   href="{% url 'gestion:login' %}">{% trans "Log In" %}</a>
+            {% endif %}
+
             <a class="mdl-navigation__link" href="">Link</a>
             <a class="mdl-navigation__link" href="">Link</a>
         </nav>
@@ -68,7 +88,7 @@
     </main>
 
 </div>
-    <script src="{% static 'js/material.min.js' %}"></script>
+<script src="{% static 'js/material.min.js' %}"></script>
 
 </body>
 </html>
