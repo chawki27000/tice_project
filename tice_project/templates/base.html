@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     {% endblock %}
 
-<title>{% block title %}TICE Project{% endblock %}</title>
+    <title>{% block title %}TICE Project{% endblock %}</title>
     <!-- Page styles -->
     {% block css %}
         <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"
@@ -19,30 +19,60 @@
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% endblock %}
 
+    {% block javascript %}
+        <script src="{% static 'js/material.min.js' %}"></script>
+    {% endblock %}
 </head>
 
 <body>
-{% block navbar %}
 
-{% endblock %}
+<!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <div class="mdl-layout__drawer-button" tabindex="0" role="button" aria-expanded="false"><i
+                    class="material-icons"></i>
+            </div>
 
-    <main>
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-        {% block content %}
-        {% endblock content %}
+            <span class="mdl-layout-title">Title</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Title</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+        </nav>
+    </div>
 
+    <main class="mdl-layout__content">
+        <div class="page-content">
+            <!-- Your content goes here -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% block content %}
+            {% endblock content %}
+
+        </div>
     </main>
 
-{% block footer %}
+</div>
 
-{% endblock %}
 
-{% block javascript %}
-    <script src="{% static 'material.min.js' %}"></script>
-{% endblock %}
 </body>
 </html>
