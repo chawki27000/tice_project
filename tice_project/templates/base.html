@@ -19,7 +19,6 @@
         <link rel="stylesheet" href="{% static 'css/material.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% endblock %}
-
 </head>
 
 <body>
@@ -39,16 +38,16 @@
             <nav class="mdl-navigation mdl-layout--large-screen-only">
                 <a class="mdl-navigation__link" href="{% url "home" %}">Home</a>
                 <a class="mdl-navigation__link" href="{% url 'about' %}">About</a>
-            {% if request.user.is_authenticated %}
-                <a class="mdl-navigation__link"
-                   href="{% url 'users:detail' request.user.username %}">{% trans "My Profile" %}</a>
-                <a class="mdl-navigation__link" href="{% url 'gestion:logout' %}">{% trans "Logout" %}</a>
-            {% else %}
-                <a id="sign-up-link" class="mdl-navigation__link"
-                   href="{% url 'gestion:register' %}">{% trans "Sign Up" %}</a>
-                <a id="log-in-link" class="mdl-navigation__link"
-                   href="{% url 'gestion:login' %}">{% trans "Log In" %}</a>
-            {% endif %}
+                {% if request.user.is_authenticated %}
+                    <a class="mdl-navigation__link"
+                       href="{% url 'users:detail' request.user.username %}">{% trans "My Profile" %}</a>
+                    <a class="mdl-navigation__link" href="{% url 'gestion:logout' %}">{% trans "Logout" %}</a>
+                {% else %}
+                    <a id="sign-up-link" class="mdl-navigation__link"
+                       href="{% url 'gestion:register' %}">{% trans "Sign Up" %}</a>
+                    <a id="log-in-link" class="mdl-navigation__link"
+                       href="{% url 'gestion:login' %}">{% trans "Log In" %}</a>
+                {% endif %}
             </nav>
         </div>
     </header>
@@ -83,7 +82,6 @@
             {% endif %}
             {% block content %}
             {% endblock content %}
-
         </div>
     </main>
 
