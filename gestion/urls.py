@@ -16,29 +16,30 @@ urlpatterns = [
     ),
 
     url(
-        regex=r'^ressource',
+        regex=r'^ressource$',
         view=views.RessourceView.as_view(),
         name='dash_ressource'
     ),
 
     url(
-        regex=r'^regroup',
+        regex=r'^regroup$',
         view=views.RegroupView.as_view(),
         name='dash_regroup'
     ),
 
     url(
-        regex=r'^teste',
+        regex=r'^teste$',
         view=views.TesteView.as_view(),
         name='dash_teste'
     ),
 
     url(
-        regex=r'^consultation',
+        regex=r'^consultation$',
         view=views.ConsultationView.as_view(),
         name='dash_consul'
     ),
 
+    # urls for atomic function
     url(r'^$', views.dashboard, name='dashboard'),
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', name='logout'),
@@ -49,4 +50,11 @@ urlpatterns = [
     url(r'^password-change/done/$','django.contrib.auth.views.password_change_done',name='password_change_done'),
 
     url(r'^register/$', views.register, name='register'),
+
+    # tmp
+    url(
+        regex=r'^read/categorie/$',
+        view=views.ListeCategorie.as_view(),
+        name='read_categ'
+    ),
 ]

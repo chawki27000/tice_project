@@ -3,11 +3,13 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from django.contrib.auth.decorators import login_required
+
+from gestion.models import Categorie
 from .forms import LoginForm, UserRegistrationForm
-# Create your views here.
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 
 
+# CBV TempleteView :
 class ConsultationView(TemplateView):
     template_name = "gestion/dash_apprenant_consul.html"
 
@@ -56,7 +58,7 @@ def user_login(request):
         return render(request, 'registration/login.html', {'form': form})
 
 
-# @login_required
+@login_required
 def dashboard(request):
     return render(request,
                   'gestion/dashboard.html',
@@ -77,3 +79,10 @@ def register(request):
     else:
         user_form = UserRegistrationForm()
     return render(request, 'gestion/register.html', {'user_form': user_form})
+
+
+# CBV : tmp
+class ListeCategorie(ListView):
+    model = Categorie
+    context_object_name = "derniers_articles"
+    template_name = "gestion/dash_admin_categorie.html"

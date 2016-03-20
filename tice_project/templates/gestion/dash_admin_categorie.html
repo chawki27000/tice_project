@@ -24,12 +24,31 @@
             </ul>
         </div>
         <div class="mdl-tabs__panel" id="read-panel">
-            <ul>
-                <li>Tywin</li>
-                <li>Cersei</li>
-                <li>Jamie</li>
-                <li>Tyrion</li>
-            </ul>
+
+
+            {% for article in derniers_articles %}
+                <div class="demo-card-event mdl-card mdl-shadow--2dp">
+                    <div class=" mdl-card--expand">
+                        <h4>
+                            <p class="me_card"><strong>Libelle Categorie: </strong> {{ article.lib_categ }}</p>
+                        </h4>
+                        <p class="me_card"><strong>ajoute par : </strong>{{ article.administrateur.user.username }}</p>
+                        <p class="me_card"><strong>ajoute le : </strong>{{ article.created }}</p>
+                        <p class="me_card"><strong>modifie le : </strong>{{ article.modified }}</p>
+
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            Modifier
+                        </a>
+                        <div class="mdl-layout-spacer"></div>
+                        <i class="material-icons">event</i>
+                    </div>
+                </div>
+                <br/>
+            {% endfor %}
+
+
         </div>
         <div class="mdl-tabs__panel" id="update-panel">
             <ul>
