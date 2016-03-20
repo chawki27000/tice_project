@@ -1,0 +1,30 @@
+{% extends "gestion/dashboard.html" %}
+{#{% block title %}Dashboard cotegorie{% endblock %}#}
+{% block content2 %}
+
+    <span class="mdl-layout-title">Consultation</span>
+
+    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+        <div class="mdl-tabs__tab-bar">
+            <a href="#read-panel" class="mdl-tabs__tab">Read</a>
+            <a href="#delete-panel" class="mdl-tabs__tab">Delete</a>
+        </div>
+
+        <div class="mdl-tabs__panel" id="read-panel">
+            <ul>
+                <li>Tywin</li>
+                <li>Cersei</li>
+                <li>Jamie</li>
+                <li>Tyrion</li>
+            </ul>
+        </div>
+
+        <div class="mdl-tabs__panel" id="delete-panel">
+            <ul>
+                <li>Viserys</li>
+                <li>Daenerys</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

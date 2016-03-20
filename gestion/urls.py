@@ -3,14 +3,41 @@ from django.conf.urls import url
 from gestion import views
 
 urlpatterns = [
-    # url(
-    #     regex=r'^$',
-    #     view=views.dashboard,
-    #     name='dashboard'
-    # ),
+    url(
+        regex=r'^categorie$',
+        view=views.CategrieView.as_view(),
+        name='dash_categorie'
+    ),
 
+    url(
+        regex=r'^formateur$',
+        view=views.FormateurView.as_view(),
+        name='dash_formateur'
+    ),
 
-    # url(r'^login/$', views.user_login, name='login'),
+    url(
+        regex=r'^ressource',
+        view=views.RessourceView.as_view(),
+        name='dash_ressource'
+    ),
+
+    url(
+        regex=r'^regroup',
+        view=views.RegroupView.as_view(),
+        name='dash_regroup'
+    ),
+
+    url(
+        regex=r'^teste',
+        view=views.TesteView.as_view(),
+        name='dash_teste'
+    ),
+
+    url(
+        regex=r'^consultation',
+        view=views.ConsultationView.as_view(),
+        name='dash_consul'
+    ),
 
     url(r'^$', views.dashboard, name='dashboard'),
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),

@@ -8,6 +8,30 @@ from .forms import LoginForm, UserRegistrationForm
 from django.views.generic import TemplateView
 
 
+class ConsultationView(TemplateView):
+    template_name = "gestion/dash_apprenant_consul.html"
+
+
+class RessourceView(TemplateView):
+    template_name = "gestion/dash_formateur_ressource.html"
+
+
+class RegroupView(TemplateView):
+    template_name = "gestion/dash_formateur_regroup.html"
+
+
+class TesteView(TemplateView):
+    template_name = "gestion/dash_formateur_teste.html"
+
+
+class FormateurView(TemplateView):
+    template_name = "gestion/dash_admin_formateur.html"
+
+
+class CategrieView(TemplateView):
+    template_name = "gestion/dash_admin_categorie.html"
+
+
 class HomeView(TemplateView):
     template_name = "base.html"
 
@@ -40,7 +64,6 @@ def dashboard(request):
 
 
 def register(request):
-
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
