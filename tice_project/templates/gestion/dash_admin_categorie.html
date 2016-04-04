@@ -23,6 +23,11 @@
                            href="{% url "gestion:update_categ" article.id %}">
                             Modifier
                         </a>
+
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                           href="{% url "gestion:delete_categ" article.id %}">
+                            Supprimer
+                        </a>
                         <div class="mdl-layout-spacer"></div>
                         <i class="material-icons">event</i>
                     </div>

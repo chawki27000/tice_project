@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
@@ -93,7 +93,7 @@ class CreateCategorie(CreateView):
     model = Categorie
     template_name = "gestion/categorie_create_form.html"
     form_class = CategorieForm
-    success_url = reverse_lazy(HomeView)
+    success_url = reverse_lazy('gestion:dash_categorie')
 
     def form_valid(self, form):
         categorie = form.save(commit=False)
@@ -110,7 +110,6 @@ class UpdateCategorie(UpdateView):
     def form_valid(self, form):
         self.object = form.save()
         messages.success(self.request, "Votre profil a ete mis a jour avec succes.")
-        print '--------------------------------------------------------------------'
         return redirect('gestion:dash_categorie')
 
 
@@ -118,4 +117,4 @@ class DeleteCategorie(DeleteView):
     model = Categorie
     context_object_name = "categorie"
     template_name = "gestion/categorie_delete.html"
-    success_url = reverse_lazy(HomeView)
+    success_url = reverse_lazy('gestion:dash_categorie')
