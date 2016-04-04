@@ -1,0 +1,9 @@
+<h1>Êtes-vous sûr de vouloir supprimer cette URL ?</h1>
+
+<p>voulez vous supprimer : {{ categorie.lib_categ }}</p>
+
+<form method="post" action="">
+    {% csrf_token %}
+    <input type="submit" value="Oui supprime moi ça">
+    <a href="{% url "gestion:dash_categorie" %}">Pas trop chaud en fait</a>
+</form>

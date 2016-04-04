@@ -1,5 +1,6 @@
 from django import forms
 
+from gestion.models import Categorie
 from tice_project.users.models import User
 
 
@@ -21,3 +22,9 @@ class UserRegistrationForm(forms.ModelForm):
         if cd['password'] != cd['password2']:
             raise forms.ValidationError('Passwords don\'t match.')
         return cd['password2']
+
+
+class CategorieForm(forms.ModelForm):
+    class Meta:
+        model = Categorie
+        fields = ('lib_categ',)

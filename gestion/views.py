@@ -1,12 +1,13 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
-from django.shortcuts import render
-
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse_lazy
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 
 from gestion.models import Categorie
-from .forms import LoginForm, UserRegistrationForm
-from django.views.generic import TemplateView, ListView
+from .forms import LoginForm, UserRegistrationForm, CategorieForm
 
 
 # CBV TempleteView :
@@ -31,7 +32,7 @@ class FormateurView(TemplateView):
 
 
 class CategrieView(TemplateView):
-    template_name = "gestion/dash_admin_categorie.html"
+    template_name = "gestion/crud/create_categorie.html"
 
 
 class HomeView(TemplateView):
@@ -81,8 +82,40 @@ def register(request):
     return render(request, 'gestion/register.html', {'user_form': user_form})
 
 
-# CBV : tmp
+# CBV : Categorie
 class ListeCategorie(ListView):
     model = Categorie
     context_object_name = "derniers_articles"
     template_name = "gestion/dash_admin_categorie.html"
+
+
+class CreateCategorie(CreateView):
+    model = Categorie
+    template_name = "gestion/categorie_create_form.html"
+    form_class = CategorieForm
+    success_url = reverse_lazy(HomeView)
+
+    def form_valid(self, form):
+        categorie = form.save(commit=False)
+        categorie.administrateur = self.request.user.administrateur
+        return super(CreateCategorie, self).form_valid(form)
+
+
+class UpdateCategorie(UpdateView):
+    model = Categorie
+    template_name = "gestion/categorie_update_form.html"
+    form_class = CategorieForm
+    success_url = reverse_lazy(HomeView)
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, "Votre profil a ete mis a jour avec succes.")
+        print '--------------------------------------------------------------------'
+        return redirect('gestion:dash_categorie')
+
+
+class DeleteCategorie(DeleteView):
+    model = Categorie
+    context_object_name = "categorie"
+    template_name = "gestion/categorie_delete.html"
+    success_url = reverse_lazy(HomeView)

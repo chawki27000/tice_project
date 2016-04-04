@@ -4,8 +4,8 @@
     <h3>Création de compte</h3>
     <div class="row">
     <form action="." method="post">
-        {{ user_form.as_p }}
         {% csrf_token %}
+        {{ user_form.as_p }}
         <button class="btn waves-effect waves-light" type="submit">Creer un compte
     <i class="material-icons right">send</i>
   </button>

@@ -5,7 +5,7 @@ from gestion import views
 urlpatterns = [
     url(
         regex=r'^categorie$',
-        view=views.CategrieView.as_view(),
+        view=views.ListeCategorie.as_view(),
         name='dash_categorie'
     ),
 
@@ -51,10 +51,23 @@ urlpatterns = [
 
     url(r'^register/$', views.register, name='register'),
 
-    # tmp
+    # CRUD
     url(
-        regex=r'^read/categorie/$',
-        view=views.ListeCategorie.as_view(),
-        name='read_categ'
+        regex=r'^categorie/new$',
+        view=views.CreateCategorie.as_view(),
+        name='create_categ'
+
+    ),
+
+    url(
+        regex=r'^categorie/edit/(?P<pk>\d+)$',
+        view=views.UpdateCategorie.as_view(),
+        name='update_categ'
+    ),
+
+    url(
+        regex=r'^categorie/del/(?P<pk>\d+)$',
+        view=views.DeleteCategorie.as_view(),
+        name='delete_categ'
     ),
 ]
