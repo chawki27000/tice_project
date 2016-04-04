@@ -4,46 +4,40 @@
 
     <span class="mdl-layout-title">Ressource</span>
 
-    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-        <div class="mdl-tabs__tab-bar">
-            <a href="#create-panel" class="mdl-tabs__tab is-active">Create</a>
-            <a href="#read-panel" class="mdl-tabs__tab">Read</a>
-            <a href="#update-panel" class="mdl-tabs__tab">Update</a>
-            <a href="#delete-panel" class="mdl-tabs__tab">Delete</a>
+    {% for article in derniers_articles %}
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--1-col">
+
+                <div class="demo-card-event mdl-card mdl-shadow--2dp">
+                    <div class=" mdl-card--expand">
+                        <h4>
+                            <p class="me_card"><strong>Libelle: </strong> {{ article.lib_ress }}</p>
+                        </h4>
+                        <p class="me_card"><strong>ajoute le : </strong>{{ article.created }}</p>
+                        <p class="me_card"><strong>modifie le : </strong>{{ article.modified }}</p>
+
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                           href="{% url "gestion:update_ressource" article.id %}">
+                            Modifier
+                        </a>
+
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                           href="{% url "gestion:delete_ressource" article.id %}">
+                            Supprimer
+                        </a>
+                        <div class="mdl-layout-spacer"></div>
+                        <i class="material-icons">event</i>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-        <div class="mdl-tabs__panel is-active" id="create-panel">
-            <ul>
-                <li>Eddard</li>
-                <li>Catelyn</li>
-                <li>Robb</li>
-                <li>Sansa</li>
-                <li>Brandon</li>
-                <li>Arya</li>
-                <li>Rickon</li>
-            </ul>
-        </div>
-        <div class="mdl-tabs__panel" id="read-panel">
-            <ul>
-                <li>Tywin</li>
-                <li>Cersei</li>
-                <li>Jamie</li>
-                <li>Tyrion</li>
-            </ul>
-        </div>
-        <div class="mdl-tabs__panel" id="update-panel">
-            <ul>
-                <li>Viserys</li>
-                <li>Daenerys</li>
-            </ul>
-        </div>
+    {% endfor %}
 
-        <div class="mdl-tabs__panel" id="delete-panel">
-            <ul>
-                <li>Viserys</li>
-                <li>Daenerys</li>
-            </ul>
-        </div>
-    </div>
+    <a href="{% url "gestion:create_ressource" %}" target="_blank" id="view-source"
+       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Ajouter</a>
 
 {% endblock %}

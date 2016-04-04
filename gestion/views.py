@@ -6,8 +6,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 
-from gestion.models import Categorie, Formateur
-from .forms import LoginForm, UserRegistrationForm, CategorieForm, FormateurForm
+from gestion.models import Categorie, Formateur, Ressource
+from .forms import LoginForm, UserRegistrationForm, CategorieForm, FormateurForm, RessourceForm
 
 
 # CBV TempleteView :
@@ -142,8 +142,8 @@ class CreateFormateur(CreateView):
 class UpdateFormateur(UpdateView):
     model = Formateur
     template_name = "gestion/formateur_update_form.html"
-    form_class = FormateurForm
-    success_url = reverse_lazy(HomeView)
+    form_class = RessourceForm
+    success_url = reverse_lazy('gestion:dash_formateur')
 
     def form_valid(self, form):
         self.object = form.save()
@@ -156,3 +156,41 @@ class DeleteFormateur(DeleteView):
     context_object_name = "formateur"
     template_name = "gestion/formateur_delete.html"
     success_url = reverse_lazy('gestion:dash_formateur')
+
+
+# CBV : Formateur
+class ListeRessource(ListView):
+    model = Ressource
+    context_object_name = "derniers_articles"
+    template_name = "gestion/dash_formateur_ressource.html"
+
+
+class CreateRessource(CreateView):
+    model = Ressource
+    template_name = "gestion/ressource_create_form.html"
+    form_class = RessourceForm
+    success_url = reverse_lazy('gestion:dash_ressource')
+
+    def form_valid(self, form):
+        categorie = form.save(commit=False)
+        categorie.administrateur = self.request.user.administrateur
+        return super(CreateRessource, self).form_valid(form)
+
+
+class UpdateRessource(UpdateView):
+    model = Ressource
+    template_name = "gestion/ressource_update_form.html"
+    form_class = RessourceForm
+    success_url = reverse_lazy('gestion:dash_ressource')
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, "Votre profil a ete mis a jour avec succes.")
+        return redirect('gestion:dash_ressource')
+
+
+class DeleteRessource(DeleteView):
+    model = Ressource
+    context_object_name = "ressource"
+    template_name = "gestion/ressource_delete.html"
+    success_url = reverse_lazy('gestion:dash_ressource')

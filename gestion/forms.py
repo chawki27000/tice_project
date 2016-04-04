@@ -1,6 +1,6 @@
 from django import forms
 
-from gestion.models import Categorie, Formateur
+from gestion.models import Categorie, Formateur, Ressource
 from tice_project.users.models import User
 
 
@@ -34,3 +34,9 @@ class FormateurForm(forms.ModelForm):
     class Meta:
         model = Formateur
         fields = ('user', 'spec_formation', 'type_formation',)
+
+
+class RessourceForm(forms.ModelForm):
+    class Meta:
+        model = Ressource
+        fields = ('lib_ress', 'type_ress', 'chapitre',)

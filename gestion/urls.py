@@ -17,7 +17,7 @@ urlpatterns = [
 
     url(
         regex=r'^ressource$',
-        view=views.RessourceView.as_view(),
+        view=views.ListeRessource.as_view(),
         name='dash_ressource'
     ),
 
@@ -51,7 +51,7 @@ urlpatterns = [
 
     url(r'^register/$', views.register, name='register'),
 
-    # CRUD
+    # CRUD (Categorie)
     url(
         regex=r'^categorie/new$',
         view=views.CreateCategorie.as_view(),
@@ -71,7 +71,7 @@ urlpatterns = [
         name='delete_categ'
     ),
 
-    # CRUD
+    # CRUD (Formateur)
     url(
         regex=r'^formateur/new$',
         view=views.CreateFormateur.as_view(),
@@ -88,5 +88,24 @@ urlpatterns = [
         regex=r'^formateur/del/(?P<pk>\d+)$',
         view=views.DeleteFormateur.as_view(),
         name='delete_formateur'
+    ),
+
+    # CRUD (Ressource)
+    url(
+        regex=r'^ressource/new$',
+        view=views.CreateRessource.as_view(),
+        name='create_ressource'
+    ),
+
+    url(
+        regex=r'^ressource/edit/(?P<pk>\d+)$',
+        view=views.UpdateRessource.as_view(),
+        name='update_ressource'
+    ),
+
+    url(
+        regex=r'^ressource/del/(?P<pk>\d+)$',
+        view=views.DeleteRessource.as_view(),
+        name='delete_ressource'
     ),
 ]
