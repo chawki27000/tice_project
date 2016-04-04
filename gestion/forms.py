@@ -1,6 +1,6 @@
 from django import forms
 
-from gestion.models import Categorie
+from gestion.models import Categorie, Formateur
 from tice_project.users.models import User
 
 
@@ -28,3 +28,9 @@ class CategorieForm(forms.ModelForm):
     class Meta:
         model = Categorie
         fields = ('lib_categ',)
+
+
+class FormateurForm(forms.ModelForm):
+    class Meta:
+        model = Formateur
+        fields = ('user', 'spec_formation', 'type_formation',)

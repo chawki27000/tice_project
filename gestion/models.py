@@ -48,6 +48,9 @@ class Formateur(models.Model):
     spec_formation = models.CharField(max_length=80)
     type_formation = models.CharField(max_length=80)
 
+    def get_absolute_url(self):
+        return reverse('formateur_detail', kwargs={'pk': self.pk})
+
     def __str__(self):
         return '{} {}'.format(self.user.first_name, self.user.last_name)
 

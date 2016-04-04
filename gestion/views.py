@@ -6,8 +6,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 
-from gestion.models import Categorie
-from .forms import LoginForm, UserRegistrationForm, CategorieForm
+from gestion.models import Categorie, Formateur
+from .forms import LoginForm, UserRegistrationForm, CategorieForm, FormateurForm
 
 
 # CBV TempleteView :
@@ -118,3 +118,41 @@ class DeleteCategorie(DeleteView):
     context_object_name = "categorie"
     template_name = "gestion/categorie_delete.html"
     success_url = reverse_lazy('gestion:dash_categorie')
+
+
+# CBV : Formateur
+class ListeFormateur(ListView):
+    model = Formateur
+    context_object_name = "derniers_articles"
+    template_name = "gestion/dash_admin_formateur.html"
+
+
+class CreateFormateur(CreateView):
+    model = Formateur
+    template_name = "gestion/formateur_create_form.html"
+    form_class = FormateurForm
+    success_url = reverse_lazy('gestion:dash_formateur')
+
+    def form_valid(self, form):
+        categorie = form.save(commit=False)
+        categorie.administrateur = self.request.user.administrateur
+        return super(CreateFormateur, self).form_valid(form)
+
+
+class UpdateFormateur(UpdateView):
+    model = Formateur
+    template_name = "gestion/formateur_update_form.html"
+    form_class = FormateurForm
+    success_url = reverse_lazy(HomeView)
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, "Votre profil a ete mis a jour avec succes.")
+        return redirect('gestion:dash_formateur')
+
+
+class DeleteFormateur(DeleteView):
+    model = Formateur
+    context_object_name = "formateur"
+    template_name = "gestion/formateur_delete.html"
+    success_url = reverse_lazy('gestion:dash_formateur')

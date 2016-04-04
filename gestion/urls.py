@@ -11,7 +11,7 @@ urlpatterns = [
 
     url(
         regex=r'^formateur$',
-        view=views.FormateurView.as_view(),
+        view=views.ListeFormateur.as_view(),
         name='dash_formateur'
     ),
 
@@ -69,5 +69,24 @@ urlpatterns = [
         regex=r'^categorie/del/(?P<pk>\d+)$',
         view=views.DeleteCategorie.as_view(),
         name='delete_categ'
+    ),
+
+    # CRUD
+    url(
+        regex=r'^formateur/new$',
+        view=views.CreateFormateur.as_view(),
+        name='create_formateur'
+    ),
+
+    url(
+        regex=r'^formateur/edit/(?P<pk>\d+)$',
+        view=views.UpdateFormateur.as_view(),
+        name='update_formateur'
+    ),
+
+    url(
+        regex=r'^formateur/del/(?P<pk>\d+)$',
+        view=views.DeleteFormateur.as_view(),
+        name='delete_formateur'
     ),
 ]
