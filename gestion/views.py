@@ -6,8 +6,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 
-from gestion.models import Categorie, Formateur, Ressource
-from .forms import LoginForm, UserRegistrationForm, CategorieForm, FormateurForm, RessourceForm
+from gestion.models import Categorie, Formateur, Ressource, Apprenant
+from .forms import LoginForm, UserRegistrationForm, CategorieForm, FormateurForm, RessourceForm, ApprenantForm
 
 
 # CBV TempleteView :
@@ -173,7 +173,6 @@ class CreateRessource(CreateView):
 
     def form_valid(self, form):
         categorie = form.save(commit=False)
-        categorie.administrateur = self.request.user.administrateur
         return super(CreateRessource, self).form_valid(form)
 
 
@@ -194,3 +193,40 @@ class DeleteRessource(DeleteView):
     context_object_name = "ressource"
     template_name = "gestion/ressource_delete.html"
     success_url = reverse_lazy('gestion:dash_ressource')
+
+
+# CBV : Apprenant
+class ListeApprenant(ListView):
+    model = Apprenant
+    context_object_name = "derniers_articles"
+    template_name = "gestion/dash_admin_apprenant.html"
+
+
+class CreateApprenant(CreateView):
+    model = Apprenant
+    template_name = "gestion/apprenant_create_form.html"
+    form_class = ApprenantForm
+    success_url = reverse_lazy('gestion:dash_apprenant')
+
+    def form_valid(self, form):
+        categorie = form.save(commit=False)
+        return super(CreateApprenant, self).form_valid(form)
+
+
+class UpdateApprenant(UpdateView):
+    model = Apprenant
+    template_name = "gestion/apprenant_update_form.html"
+    form_class = RessourceForm
+    success_url = reverse_lazy('gestion:dash_apprenant')
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, "Votre profil a ete mis a jour avec succes.")
+        return redirect('gestion:dash_apprenant')
+
+
+class DeleteApprenant(DeleteView):
+    model = Apprenant
+    context_object_name = "apprenant"
+    template_name = "gestion/apprenant_delete.html"
+    success_url = reverse_lazy('gestion:dash_apprenant')

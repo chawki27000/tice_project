@@ -105,6 +105,9 @@
                     <a class="mdl-navigation__link" href="{% url "gestion:dash_formateur" %}"><i
                             class="mdl-color-text--blue-grey-400 material-icons"
                             role="presentation">inbox</i>Formateur</a>
+                    <a class="mdl-navigation__link" href="{% url "gestion:dash_apprenant" %}"><i
+                            class="mdl-color-text--blue-grey-400 material-icons"
+                            role="presentation">inbox</i>Apprenant</a>
                     <a class="mdl-navigation__link" href="{% url "gestion:dash_categorie" %}"><i
                             class="mdl-color-text--blue-grey-400 material-icons"
                             role="presentation">inbox</i>Categorie</a>
@@ -121,8 +124,9 @@
                             role="presentation">inbox</i>Teste</a>
                     <!-- Dashboard : (Apprenant) Side-->
                 {% else %}
-                    <a class="mdl-navigation__link" href="{% url "gestion:dash_consul" %}"><i class="mdl-color-text--blue-grey-400 material-icons"
-                                                               role="presentation">inbox</i>Consultation</a>
+                    <a class="mdl-navigation__link" href="{% url "gestion:dash_consul" %}"><i
+                            class="mdl-color-text--blue-grey-400 material-icons"
+                            role="presentation">inbox</i>Consultation</a>
                 {% endif %}
 
                 <div class="mdl-layout-spacer"></div>

@@ -39,6 +39,12 @@ urlpatterns = [
         name='dash_consul'
     ),
 
+    url(
+        regex=r'^apprenant$',
+        view=views.ListeApprenant.as_view(),
+        name='dash_apprenant'
+    ),
+
     # urls for atomic function
     url(r'^$', views.dashboard, name='dashboard'),
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
@@ -107,5 +113,24 @@ urlpatterns = [
         regex=r'^ressource/del/(?P<pk>\d+)$',
         view=views.DeleteRessource.as_view(),
         name='delete_ressource'
+    ),
+
+    # CRUD (Apprenant)
+    url(
+        regex=r'^apprenant/new$',
+        view=views.CreateApprenant.as_view(),
+        name='create_apprenant'
+    ),
+
+    url(
+        regex=r'^apprenant/edit/(?P<pk>\d+)$',
+        view=views.UpdateApprenant.as_view(),
+        name='update_apprenant'
+    ),
+
+    url(
+        regex=r'^apprenant/del/(?P<pk>\d+)$',
+        view=views.DeleteApprenant.as_view(),
+        name='delete_apprenant'
     ),
 ]

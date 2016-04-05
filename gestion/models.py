@@ -85,6 +85,9 @@ class Apprenant(models.Model):
     diplome_appr = models.CharField(max_length=80)
     formation = models.ForeignKey('Formation')
 
+    def get_absolute_url(self):
+        return reverse('apprenant_detail', kwargs={'pk': self.pk})
+
     def __str__(self):
         return '{} {}'.format(self.user.first_name, self.user.last_name)
 

@@ -1,0 +1,45 @@
+{% extends "gestion/dashboard.html" %}
+{#{% block title %}Dashboard cotegorie{% endblock %}#}
+{% block content2 %}
+
+    <span class="mdl-layout-title">Apprenant</span>
+
+    {% for article in derniers_articles %}
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--1-col">
+
+                <div class="demo-card-event mdl-card mdl-shadow--2dp">
+                    <div class=" mdl-card--expand">
+                        <h4>
+                            <p class="me_card"><strong>Username: </strong> {{ article.user.username }}</p>
+                        </h4>
+                        <p class="me_card"><strong>Grade : </strong> {{ article.grade_util }}</p>
+                        <p class="me_card"><strong>Diplome : </strong> {{ article.diplome_appr }}</p>
+                        <p class="me_card"><strong>Formation : </strong> {{ article.formation.lib_form }}</p>
+
+
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                           href="{% url "gestion:update_apprenant" article.id %}">
+                            Modifier
+                        </a>
+
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                           href="{% url "gestion:delete_apprenant" article.id %}">
+                            Supprimer
+                        </a>
+                        <div class="mdl-layout-spacer"></div>
+                        <i class="material-icons">event</i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+    <a href="{% url "gestion:create_apprenant" %}" target="_blank" id="view-source"
+       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Ajouter</a>
+
+{% endblock %}

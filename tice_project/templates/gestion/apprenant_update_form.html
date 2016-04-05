@@ -1,0 +1,14 @@
+{% extends "gestion/dashboard.html" %}
+
+{% block content2 %}
+
+    <div class="row">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Valider"/>
+
+        </form>
+    </div>
+
+{% endblock %}

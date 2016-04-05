@@ -1,0 +1,9 @@
+<h1>Êtes-vous sûr de vouloir supprimer cette URL ?</h1>
+
+<p>voulez vous supprimer : {{ apprenant.user.last_name }} {{ apprenant.user.first_name }}</p>
+
+<form method="post" action="">
+    {% csrf_token %}
+    <input type="submit" value="Oui supprime moi ça">
+    <a href="{% url "gestion:dash_apprenant" %}">non, pas tout de suite</a>
+</form>
