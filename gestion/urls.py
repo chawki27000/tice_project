@@ -224,4 +224,28 @@ urlpatterns = [
         name='update_t'
     ),
 
+    # CRUD (Cours)
+    url(
+        regex=r'^cours',
+        view=views.ListeCours.as_view(),
+        name='dash_cours'
+    ),
+
+    url(
+        regex=r'^cour/new$',
+        view=views.CreateCours.as_view(),
+        name='create_cour'
+    ),
+
+    url(
+        regex=r'^cour/del/(?P<pk>\d+)$',
+        view=views.DeleteCours.as_view(),
+        name='delete_cour'
+    ),
+
+    url(
+        regex=r'^cour/edit/(?P<pk>\d+)$',
+        view=views.UpdateCours.as_view(),
+        name='update_cour'
+    ),
 ]

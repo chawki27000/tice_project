@@ -6,8 +6,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 
-from gestion.models import Categorie, Formateur, Ressource, Apprenant, Chapitre, Animer, Regroupement, Test
-from .forms import ChapitreForm, AnimerForm, RegroupementForm, TestForm
+from gestion.models import Categorie, Formateur, Ressource, Apprenant, Chapitre, Animer, Regroupement, Test, Cours
+from .forms import ChapitreForm, AnimerForm, RegroupementForm, TestForm, CoursForm
 from .forms import LoginForm, UserRegistrationForm, CategorieForm, FormateurForm, RessourceForm, ApprenantForm
 
 
@@ -381,3 +381,40 @@ class DeleteTest(DeleteView):
     context_object_name = "test"
     template_name = "gestion/formateur/test_delete.html"
     success_url = reverse_lazy('gestion:dash_test')
+
+
+# CBV : Cours
+class ListeCours(ListView):
+    model = Cours
+    context_object_name = "derniers_articles"
+    template_name = "gestion/formateur/dash_formateur_cours.html"
+
+
+class CreateCours(CreateView):
+    model = Cours
+    template_name = "gestion/formateur/cours_create_form.html"
+    form_class = CoursForm
+    success_url = reverse_lazy('gestion:dash_cours')
+
+    def form_valid(self, form):
+        form.save(commit=False)
+        return super(CreateCours, self).form_valid(form)
+
+
+class UpdateCours(UpdateView):
+    model = Cours
+    template_name = "gestion/formateur/cours_update_form.html"
+    form_class = CoursForm
+    success_url = reverse_lazy('gestion:dash_cours')
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, "Votre profil a ete mis a jour avec succes.")
+        return redirect('gestion:dash_cours')
+
+
+class DeleteCours(DeleteView):
+    model = Cours
+    context_object_name = "cours"
+    template_name = "gestion/formateur/cours_delete.html"
+    success_url = reverse_lazy('gestion:dash_cours')

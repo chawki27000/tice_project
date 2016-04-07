@@ -1,6 +1,6 @@
 from django import forms
 
-from gestion.models import Categorie, Formateur, Ressource, Apprenant, Chapitre, Animer, Regroupement, Test
+from gestion.models import Categorie, Formateur, Ressource, Apprenant, Chapitre, Animer, Regroupement, Test, Cours
 from tice_project.users.models import User
 
 
@@ -70,3 +70,9 @@ class TestForm(forms.ModelForm):
     class Meta:
         model = Test
         fields = ('id_util', 'id_form', 'date_test', 'note_test',)
+
+
+class CoursForm(forms.ModelForm):
+    class Meta:
+        model = Cours
+        fields = ('lib_cour', 'formation',)
