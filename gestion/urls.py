@@ -3,46 +3,11 @@ from django.conf.urls import url
 from gestion import views
 
 urlpatterns = [
-    url(
-        regex=r'^categorie$',
-        view=views.ListeCategorie.as_view(),
-        name='dash_categorie'
-    ),
-
-    url(
-        regex=r'^formateur$',
-        view=views.ListeFormateur.as_view(),
-        name='dash_formateur'
-    ),
-
-    url(
-        regex=r'^ressource$',
-        view=views.ListeRessource.as_view(),
-        name='dash_ressource'
-    ),
-
-    url(
-        regex=r'^regroup$',
-        view=views.RegroupView.as_view(),
-        name='dash_regroup'
-    ),
-
-    url(
-        regex=r'^teste$',
-        view=views.TesteView.as_view(),
-        name='dash_teste'
-    ),
 
     url(
         regex=r'^consultation$',
         view=views.ConsultationView.as_view(),
         name='dash_consul'
-    ),
-
-    url(
-        regex=r'^apprenant$',
-        view=views.ListeApprenant.as_view(),
-        name='dash_apprenant'
     ),
 
     # urls for atomic function
@@ -58,6 +23,12 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
 
     # CRUD (Categorie)
+    url(
+        regex=r'^categorie$',
+        view=views.ListeCategorie.as_view(),
+        name='dash_categorie'
+    ),
+
     url(
         regex=r'^categorie/new$',
         view=views.CreateCategorie.as_view(),
@@ -79,6 +50,12 @@ urlpatterns = [
 
     # CRUD (Formateur)
     url(
+        regex=r'^formateur$',
+        view=views.ListeFormateur.as_view(),
+        name='dash_formateur'
+    ),
+
+    url(
         regex=r'^formateur/new$',
         view=views.CreateFormateur.as_view(),
         name='create_formateur'
@@ -97,6 +74,12 @@ urlpatterns = [
     ),
 
     # CRUD (Ressource)
+    url(
+        regex=r'^ressource$',
+        view=views.ListeRessource.as_view(),
+        name='dash_ressource'
+    ),
+
     url(
         regex=r'^ressource/new$',
         view=views.CreateRessource.as_view(),
@@ -117,6 +100,12 @@ urlpatterns = [
 
     # CRUD (Apprenant)
     url(
+        regex=r'^apprenant$',
+        view=views.ListeApprenant.as_view(),
+        name='dash_apprenant'
+    ),
+
+    url(
         regex=r'^apprenant/new$',
         view=views.CreateApprenant.as_view(),
         name='create_apprenant'
@@ -133,4 +122,81 @@ urlpatterns = [
         view=views.DeleteApprenant.as_view(),
         name='delete_apprenant'
     ),
+
+    # CRUD (Animer)
+    url(
+        regex=r'^anime$',
+        view=views.ListeAnimation.as_view(),
+        name='dash_anime'
+    ),
+
+    url(
+        regex=r'^anime/new$',
+        view=views.CreateAnimation.as_view(),
+        name='create_anime'
+    ),
+
+    url(
+        regex=r'^anime/edit/(?P<pk>\d+)$',
+        view=views.UpdateAnimation.as_view(),
+        name='update_anime'
+    ),
+
+    url(
+        regex=r'^anime/del/(?P<pk>\d+)$',
+        view=views.DeleteAnimation.as_view(),
+        name='delete_anime'
+    ),
+
+
+    # CRUD (Chapitre)
+    url(
+        regex=r'^chapitre$',
+        view=views.ListeChapitre.as_view(),
+        name='dash_chapitre'
+    ),
+
+    url(
+        regex=r'^chapitre/new$',
+        view=views.CreateChapitre.as_view(),
+        name='create_chapitre'
+    ),
+
+    url(
+        regex=r'^chapitre/edit/(?P<pk>\d+)$',
+        view=views.UpdateChapitre.as_view(),
+        name='update_chapitre'
+    ),
+
+    url(
+        regex=r'^chapitre/del/(?P<pk>\d+)$',
+        view=views.DeleteChapitre.as_view(),
+        name='delete_chapitre'
+    ),
+
+    # CRUD (Regroupement)
+    url(
+        regex=r'^regroup',
+        view=views.ListeRegroupement.as_view(),
+        name='dash_regroup'
+    ),
+
+    url(
+        regex=r'^reg/new$',
+        view=views.CreateRegroupement.as_view(),
+        name='create_reg'
+    ),
+
+    url(
+        regex=r'^reg/edit/(?P<pk>\d+)$',
+        view=views.UpdateRegroupement.as_view(),
+        name='update_reg'
+    ),
+
+    url(
+        regex=r'^reg/del/(?P<pk>\d+)$',
+        view=views.DeleteRegroupement.as_view(),
+        name='delete_reg'
+    ),
+
 ]

@@ -1,6 +1,6 @@
 from django import forms
 
-from gestion.models import Categorie, Formateur, Ressource, Apprenant
+from gestion.models import Categorie, Formateur, Ressource, Apprenant, Chapitre, Animer, Regroupement, Test
 from tice_project.users.models import User
 
 
@@ -46,3 +46,27 @@ class RessourceForm(forms.ModelForm):
     class Meta:
         model = Ressource
         fields = ('lib_ress', 'type_ress', 'chapitre',)
+
+
+class ChapitreForm(forms.ModelForm):
+    class Meta:
+        model = Chapitre
+        fields = ('lib_chap', 'cours',)
+
+
+class AnimerForm(forms.ModelForm):
+    class Meta:
+        model = Animer
+        fields = ('id_util', 'id_form',)
+
+
+class RegroupementForm(forms.ModelForm):
+    class Meta:
+        model = Regroupement
+        fields = ('date_group', 'formation',)
+
+
+class TestForm(forms.ModelForm):
+    class Meta:
+        model = Test
+        fields = ('id_util', 'id_form', 'date_test', 'note_test',)

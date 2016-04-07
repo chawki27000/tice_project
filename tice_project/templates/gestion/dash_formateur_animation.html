@@ -2,7 +2,7 @@
 {#{% block title %}Dashboard cotegorie{% endblock %}#}
 {% block content2 %}
 
-    <span class="mdl-layout-title">Regroupement</span>
+    <span class="mdl-layout-title">Animation</span>
 
     {% for article in derniers_articles %}
         <div class="mdl-grid">
@@ -11,21 +11,20 @@
                 <div class="demo-card-event mdl-card mdl-shadow--2dp">
                     <div class=" mdl-card--expand">
                         <h4>
-                            <p class="me_card"><strong>Libelle: </strong> {{ article.date_group }}</p>
+                            <p class="me_card"><strong>Animation : </strong> {{ id_util.user.last_name }} - {{ id_form.lib_form }}</p>
                         </h4>
-                        <p class="me_card"><strong>Formation : </strong> {{ article.formation.lib_form }}</p>
                         <p class="me_card"><strong>ajoute le : </strong>{{ article.created }}</p>
                         <p class="me_card"><strong>modifie le : </strong>{{ article.modified }}</p>
 
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                           href="{% url "gestion:update_reg" article.id %}">
+                           href="{% url "gestion:update_anime" article.id %}">
                             Modifier
                         </a>
 
                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                           href="{% url "gestion:delete_reg" article.id %}">
+                           href="{% url "gestion:delete_anime" article.id %}">
                             Supprimer
                         </a>
                         <div class="mdl-layout-spacer"></div>
@@ -38,7 +37,7 @@
 
     {% endfor %}
 
-    <a href="{% url "gestion:create_reg" %}" target="_blank" id="view-source"
+    <a href="{% url "gestion:create_anime" %}" target="_blank" id="view-source"
        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Ajouter</a>
 
 {% endblock %}

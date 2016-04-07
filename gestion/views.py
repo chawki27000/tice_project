@@ -6,7 +6,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 
-from gestion.models import Categorie, Formateur, Ressource, Apprenant
+from gestion.models import Categorie, Formateur, Ressource, Apprenant, Chapitre, Animer, Regroupement, Test
+from .forms import ChapitreForm, AnimerForm, RegroupementForm, TestForm
 from .forms import LoginForm, UserRegistrationForm, CategorieForm, FormateurForm, RessourceForm, ApprenantForm
 
 
@@ -24,7 +25,7 @@ class RegroupView(TemplateView):
 
 
 class TesteView(TemplateView):
-    template_name = "gestion/dash_formateur_teste.html"
+    template_name = "gestion/dash_formateur_test.html"
 
 
 class FormateurView(TemplateView):
@@ -81,6 +82,8 @@ def register(request):
         user_form = UserRegistrationForm()
     return render(request, 'gestion/register.html', {'user_form': user_form})
 
+
+##########################################################################################
 
 # CBV : Categorie
 class ListeCategorie(ListView):
@@ -158,7 +161,7 @@ class DeleteFormateur(DeleteView):
     success_url = reverse_lazy('gestion:dash_formateur')
 
 
-# CBV : Formateur
+# CBV : Ressource
 class ListeRessource(ListView):
     model = Ressource
     context_object_name = "derniers_articles"
@@ -172,7 +175,7 @@ class CreateRessource(CreateView):
     success_url = reverse_lazy('gestion:dash_ressource')
 
     def form_valid(self, form):
-        categorie = form.save(commit=False)
+        form.save(commit=False)
         return super(CreateRessource, self).form_valid(form)
 
 
@@ -209,7 +212,7 @@ class CreateApprenant(CreateView):
     success_url = reverse_lazy('gestion:dash_apprenant')
 
     def form_valid(self, form):
-        categorie = form.save(commit=False)
+        form.save(commit=False)
         return super(CreateApprenant, self).form_valid(form)
 
 
@@ -230,3 +233,116 @@ class DeleteApprenant(DeleteView):
     context_object_name = "apprenant"
     template_name = "gestion/apprenant_delete.html"
     success_url = reverse_lazy('gestion:dash_apprenant')
+
+
+# CBV : Animation
+class ListeAnimation(ListView):
+    model = Animer
+    context_object_name = "derniers_articles"
+    template_name = "gestion/dash_formateur_animation.html"
+
+
+class CreateAnimation(CreateView):
+    model = Animer
+    template_name = "gestion/animation_create_form.html"
+    form_class = AnimerForm
+    success_url = reverse_lazy('gestion:dash_anime')
+
+    def form_valid(self, form):
+        form.save(commit=False)
+        return super(CreateAnimation, self).form_valid(form)
+
+
+class UpdateAnimation(UpdateView):
+    model = Animer
+    template_name = "gestion/animation_update_form.html"
+    form_class = AnimerForm
+    success_url = reverse_lazy('gestion:dash_apprenant')
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, "Votre profil a ete mis a jour avec succes.")
+        return redirect('gestion:dash_anime')
+
+
+class DeleteAnimation(DeleteView):
+    model = Animer
+    context_object_name = "animation"
+    template_name = "gestion/animation_delete.html"
+    success_url = reverse_lazy('gestion:dash_anime')
+
+
+# CBV : Chapitre
+class ListeChapitre(ListView):
+    model = Chapitre
+    context_object_name = "derniers_articles"
+    template_name = "gestion/dash_formateur_chapitre.html"
+
+
+class CreateChapitre(CreateView):
+    model = Chapitre
+    template_name = "gestion/chapitre_create_form.html"
+    form_class = ChapitreForm
+    success_url = reverse_lazy('gestion:dash_chapitre')
+
+    def form_valid(self, form):
+        form.save(commit=False)
+        return super(CreateChapitre, self).form_valid(form)
+
+
+class UpdateChapitre(UpdateView):
+    model = Chapitre
+    template_name = "gestion/chapitre_update_form.html"
+    form_class = ChapitreForm
+    success_url = reverse_lazy('gestion:dash_chapitre')
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, "Votre profil a ete mis a jour avec succes.")
+        return redirect('gestion:dash_chapitre')
+
+
+class DeleteChapitre(DeleteView):
+    model = Chapitre
+    context_object_name = "chapitre"
+    template_name = "gestion/chapitre_delete.html"
+    success_url = reverse_lazy('gestion:dash_chapitre')
+
+
+# CBV : Regroupement
+class ListeRegroupement(ListView):
+    model = Regroupement
+    context_object_name = "derniers_articles"
+    template_name = "gestion/dash_formateur_regroup.html"
+
+
+class CreateRegroupement(CreateView):
+    model = Regroupement
+    template_name = "gestion/reg_create_form.html"
+    form_class = RegroupementForm
+    success_url = reverse_lazy('gestion:dash_regroup')
+
+    def form_valid(self, form):
+        form.save(commit=False)
+        return super(CreateRegroupement, self).form_valid(form)
+
+
+class UpdateRegroupement(UpdateView):
+    model = Regroupement
+    template_name = "gestion/reg_update_form.html"
+    form_class = RegroupementForm
+    success_url = reverse_lazy('gestion:dash_regroup')
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, "Votre profil a ete mis a jour avec succes.")
+        return redirect('gestion:dash_regroup')
+
+
+class DeleteRegroupement(DeleteView):
+    model = Regroupement
+    context_object_name = "reg"
+    template_name = "gestion/reg_delete.html"
+    success_url = reverse_lazy('gestion:dash_regroup')
+
+

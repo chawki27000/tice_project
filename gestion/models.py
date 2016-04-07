@@ -74,6 +74,9 @@ class Formation(TimeStampedModel):
     date_fin_form = models.DateField(auto_now=False, auto_now_add=False)
     categorie = models.ForeignKey('Categorie')
 
+    def get_absolute_url(self):
+        return reverse('formation_detail', kwargs={'pk': self.pk})
+
     def __str__(self):
         return self.lib_form
 
@@ -97,14 +100,20 @@ class Regroupement(TimeStampedModel):
     date_group = models.DateField(auto_now=False, auto_now_add=False)
     formation = models.ForeignKey('Formation')
 
+    def get_absolute_url(self):
+        return reverse('regroup_detail', kwargs={'pk': self.pk})
+
     def __str__(self):
-        return str(self.formation)
+        return str(self.date_group)
 
 
 # Classe ORM Cours
 class Cours(TimeStampedModel):
     lib_cour = models.CharField(max_length=80)
     formation = models.ForeignKey('Formation')
+
+    def get_absolute_url(self):
+        return reverse('cour_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.lib_cour
@@ -114,6 +123,9 @@ class Cours(TimeStampedModel):
 class Chapitre(TimeStampedModel):
     lib_chap = models.CharField(max_length=80)
     cours = models.ForeignKey('Cours')
+
+    def get_absolute_url(self):
+        return reverse('chapitre_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.lib_chap
@@ -125,6 +137,9 @@ class Ressource(TimeStampedModel):
     type_ress = models.CharField(max_length=50)
     chapitre = models.ForeignKey('Chapitre')
 
+    def get_absolute_url(self):
+        return reverse('ress_detail', kwargs={'pk': self.pk})
+
     def __str__(self):
         return self.lib_ress
 
@@ -133,6 +148,9 @@ class Ressource(TimeStampedModel):
 class Animer(TimeStampedModel):
     id_util = models.ForeignKey('Formateur')
     id_form = models.ForeignKey('Formation')
+
+    def get_absolute_url(self):
+        return reverse('anime_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return '{} - {}'.format(self.id_util.user.last_name,
@@ -146,6 +164,9 @@ class Test(TimeStampedModel):
 
     date_test = models.DateField(auto_now=False, auto_now_add=False)
     note_test = models.IntegerField()
+
+    def get_absolute_url(self):
+        return reverse('test_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return '{} - {}'.format(self.id_form.lib_form,
