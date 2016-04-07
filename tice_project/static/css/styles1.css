@@ -272,3 +272,6 @@ _:-ms-input-placeholder, :root .demo-graph {
   color : #ffffff;
 }
 
+.demo-list-two {
+  width: 300px;
+}

@@ -4,27 +4,32 @@
 
     <span class="mdl-layout-title">Consultation</span>
 
-    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-        <div class="mdl-tabs__tab-bar">
-            <a href="#read-panel" class="mdl-tabs__tab">Read</a>
-            <a href="#delete-panel" class="mdl-tabs__tab">Delete</a>
-        </div>
 
-        <div class="mdl-tabs__panel" id="read-panel">
-            <ul>
-                <li>Tywin</li>
-                <li>Cersei</li>
-                <li>Jamie</li>
-                <li>Tyrion</li>
-            </ul>
-        </div>
+    <ul class="demo-list-two mdl-list">
 
-        <div class="mdl-tabs__panel" id="delete-panel">
-            <ul>
-                <li>Viserys</li>
-                <li>Daenerys</li>
-            </ul>
-        </div>
-    </div>
+
+            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Formation</th>
+                    <th>Date du teste</th>
+                    <th>Note</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for article in derniers_articles %}
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric">{{ article.id_form.lib_form }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ article.date_test }}</td>
+                    <td><strong>{{ article.note_test }}</strong></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+    </ul>
+
+
 
 {% endblock %}

@@ -4,12 +4,6 @@ from gestion import views
 
 urlpatterns = [
 
-    url(
-        regex=r'^consultation$',
-        view=views.ConsultationView.as_view(),
-        name='dash_consul'
-    ),
-
     # urls for atomic function
     url(r'^$', views.dashboard, name='dashboard'),
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
@@ -17,8 +11,8 @@ urlpatterns = [
     url(r'^logout-then-login/$', 'django.contrib.auth.views.logout_then_login', name='logout_then_login'),
 
     # change password urls
-    url(r'^password-change/$','django.contrib.auth.views.password_change',name='password_change'),
-    url(r'^password-change/done/$','django.contrib.auth.views.password_change_done',name='password_change_done'),
+    url(r'^password-change/$', 'django.contrib.auth.views.password_change', name='password_change'),
+    url(r'^password-change/done/$', 'django.contrib.auth.views.password_change_done', name='password_change_done'),
 
     url(r'^register/$', views.register, name='register'),
 
@@ -148,7 +142,6 @@ urlpatterns = [
         name='delete_anime'
     ),
 
-
     # CRUD (Chapitre)
     url(
         regex=r'^chapitre$',
@@ -247,5 +240,12 @@ urlpatterns = [
         regex=r'^cour/edit/(?P<pk>\d+)$',
         view=views.UpdateCours.as_view(),
         name='update_cour'
+    ),
+
+    # READ(Consultation)
+    url(
+        regex=r'^consultation$',
+        view=views.ConsultationView.as_view(),
+        name='dash_consul'
     ),
 ]

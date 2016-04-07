@@ -12,9 +12,6 @@ from .forms import LoginForm, UserRegistrationForm, CategorieForm, FormateurForm
 
 
 # CBV TempleteView :
-class ConsultationView(TemplateView):
-    template_name = "gestion/apprenant/dash_apprenant_consul.html"
-
 
 class RessourceView(TemplateView):
     template_name = "gestion/formateur/dash_formateur_ressource.html"
@@ -30,10 +27,6 @@ class TesteView(TemplateView):
 
 class FormateurView(TemplateView):
     template_name = "gestion/admin/dash_admin_formateur.html"
-
-
-class CategrieView(TemplateView):
-    template_name = "gestion/crud/create_categorie.html"
 
 
 class HomeView(TemplateView):
@@ -418,3 +411,13 @@ class DeleteCours(DeleteView):
     context_object_name = "cours"
     template_name = "gestion/formateur/cours_delete.html"
     success_url = reverse_lazy('gestion:dash_cours')
+
+
+# READ : Consultation
+class ConsultationView(ListView):
+    model = Test
+    context_object_name = "derniers_articles"
+    template_name = "gestion/apprenant/dash_apprenant_consul.html"
+
+    def get_queryset(self):
+        return Test.objects.filter(id_util=self.request.user.apprenant.id)
