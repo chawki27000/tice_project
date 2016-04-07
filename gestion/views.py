@@ -13,23 +13,23 @@ from .forms import LoginForm, UserRegistrationForm, CategorieForm, FormateurForm
 
 # CBV TempleteView :
 class ConsultationView(TemplateView):
-    template_name = "gestion/dash_apprenant_consul.html"
+    template_name = "gestion/apprenant/dash_apprenant_consul.html"
 
 
 class RessourceView(TemplateView):
-    template_name = "gestion/dash_formateur_ressource.html"
+    template_name = "gestion/formateur/dash_formateur_ressource.html"
 
 
 class RegroupView(TemplateView):
-    template_name = "gestion/dash_formateur_regroup.html"
+    template_name = "gestion/formateur/dash_formateur_regroup.html"
 
 
 class TesteView(TemplateView):
-    template_name = "gestion/dash_formateur_test.html"
+    template_name = "gestion/formateur/dash_formateur_test.html"
 
 
 class FormateurView(TemplateView):
-    template_name = "gestion/dash_admin_formateur.html"
+    template_name = "gestion/admin/dash_admin_formateur.html"
 
 
 class CategrieView(TemplateView):
@@ -89,12 +89,12 @@ def register(request):
 class ListeCategorie(ListView):
     model = Categorie
     context_object_name = "derniers_articles"
-    template_name = "gestion/dash_admin_categorie.html"
+    template_name = "gestion/admin/dash_admin_categorie.html"
 
 
 class CreateCategorie(CreateView):
     model = Categorie
-    template_name = "gestion/categorie_create_form.html"
+    template_name = "gestion/admin/categorie_create_form.html"
     form_class = CategorieForm
     success_url = reverse_lazy('gestion:dash_categorie')
 
@@ -106,7 +106,7 @@ class CreateCategorie(CreateView):
 
 class UpdateCategorie(UpdateView):
     model = Categorie
-    template_name = "gestion/categorie_update_form.html"
+    template_name = "gestion/admin/categorie_update_form.html"
     form_class = CategorieForm
     success_url = reverse_lazy(HomeView)
 
@@ -119,7 +119,7 @@ class UpdateCategorie(UpdateView):
 class DeleteCategorie(DeleteView):
     model = Categorie
     context_object_name = "categorie"
-    template_name = "gestion/categorie_delete.html"
+    template_name = "gestion/admin/categorie_delete.html"
     success_url = reverse_lazy('gestion:dash_categorie')
 
 
@@ -127,12 +127,12 @@ class DeleteCategorie(DeleteView):
 class ListeFormateur(ListView):
     model = Formateur
     context_object_name = "derniers_articles"
-    template_name = "gestion/dash_admin_formateur.html"
+    template_name = "gestion/admin/dash_admin_formateur.html"
 
 
 class CreateFormateur(CreateView):
     model = Formateur
-    template_name = "gestion/formateur_create_form.html"
+    template_name = "gestion/admin/formateur_create_form.html"
     form_class = FormateurForm
     success_url = reverse_lazy('gestion:dash_formateur')
 
@@ -144,7 +144,7 @@ class CreateFormateur(CreateView):
 
 class UpdateFormateur(UpdateView):
     model = Formateur
-    template_name = "gestion/formateur_update_form.html"
+    template_name = "gestion/admin/formateur_update_form.html"
     form_class = RessourceForm
     success_url = reverse_lazy('gestion:dash_formateur')
 
@@ -157,7 +157,7 @@ class UpdateFormateur(UpdateView):
 class DeleteFormateur(DeleteView):
     model = Formateur
     context_object_name = "formateur"
-    template_name = "gestion/formateur_delete.html"
+    template_name = "gestion/admin/formateur_delete.html"
     success_url = reverse_lazy('gestion:dash_formateur')
 
 
@@ -165,12 +165,12 @@ class DeleteFormateur(DeleteView):
 class ListeRessource(ListView):
     model = Ressource
     context_object_name = "derniers_articles"
-    template_name = "gestion/dash_formateur_ressource.html"
+    template_name = "gestion/formateur/dash_formateur_ressource.html"
 
 
 class CreateRessource(CreateView):
     model = Ressource
-    template_name = "gestion/ressource_create_form.html"
+    template_name = "gestion/formateur/ressource_create_form.html"
     form_class = RessourceForm
     success_url = reverse_lazy('gestion:dash_ressource')
 
@@ -181,7 +181,7 @@ class CreateRessource(CreateView):
 
 class UpdateRessource(UpdateView):
     model = Ressource
-    template_name = "gestion/ressource_update_form.html"
+    template_name = "gestion/formateur/ressource_update_form.html"
     form_class = RessourceForm
     success_url = reverse_lazy('gestion:dash_ressource')
 
@@ -194,7 +194,7 @@ class UpdateRessource(UpdateView):
 class DeleteRessource(DeleteView):
     model = Ressource
     context_object_name = "ressource"
-    template_name = "gestion/ressource_delete.html"
+    template_name = "gestion/formateur/ressource_delete.html"
     success_url = reverse_lazy('gestion:dash_ressource')
 
 
@@ -202,12 +202,12 @@ class DeleteRessource(DeleteView):
 class ListeApprenant(ListView):
     model = Apprenant
     context_object_name = "derniers_articles"
-    template_name = "gestion/dash_admin_apprenant.html"
+    template_name = "gestion/admin/dash_admin_apprenant.html"
 
 
 class CreateApprenant(CreateView):
     model = Apprenant
-    template_name = "gestion/apprenant_create_form.html"
+    template_name = "gestion/admin/apprenant_create_form.html"
     form_class = ApprenantForm
     success_url = reverse_lazy('gestion:dash_apprenant')
 
@@ -218,7 +218,7 @@ class CreateApprenant(CreateView):
 
 class UpdateApprenant(UpdateView):
     model = Apprenant
-    template_name = "gestion/apprenant_update_form.html"
+    template_name = "gestion/admin/apprenant_update_form.html"
     form_class = RessourceForm
     success_url = reverse_lazy('gestion:dash_apprenant')
 
@@ -231,7 +231,7 @@ class UpdateApprenant(UpdateView):
 class DeleteApprenant(DeleteView):
     model = Apprenant
     context_object_name = "apprenant"
-    template_name = "gestion/apprenant_delete.html"
+    template_name = "gestion/admin/apprenant_delete.html"
     success_url = reverse_lazy('gestion:dash_apprenant')
 
 
@@ -239,12 +239,12 @@ class DeleteApprenant(DeleteView):
 class ListeAnimation(ListView):
     model = Animer
     context_object_name = "derniers_articles"
-    template_name = "gestion/dash_formateur_animation.html"
+    template_name = "gestion/formateur/dash_formateur_animation.html"
 
 
 class CreateAnimation(CreateView):
     model = Animer
-    template_name = "gestion/animation_create_form.html"
+    template_name = "gestion/formateur/animation_create_form.html"
     form_class = AnimerForm
     success_url = reverse_lazy('gestion:dash_anime')
 
@@ -255,7 +255,7 @@ class CreateAnimation(CreateView):
 
 class UpdateAnimation(UpdateView):
     model = Animer
-    template_name = "gestion/animation_update_form.html"
+    template_name = "gestion/formateur/animation_update_form.html"
     form_class = AnimerForm
     success_url = reverse_lazy('gestion:dash_apprenant')
 
@@ -268,7 +268,7 @@ class UpdateAnimation(UpdateView):
 class DeleteAnimation(DeleteView):
     model = Animer
     context_object_name = "animation"
-    template_name = "gestion/animation_delete.html"
+    template_name = "gestion/formateur/animation_delete.html"
     success_url = reverse_lazy('gestion:dash_anime')
 
 
@@ -276,12 +276,12 @@ class DeleteAnimation(DeleteView):
 class ListeChapitre(ListView):
     model = Chapitre
     context_object_name = "derniers_articles"
-    template_name = "gestion/dash_formateur_chapitre.html"
+    template_name = "gestion/formateur/dash_formateur_chapitre.html"
 
 
 class CreateChapitre(CreateView):
     model = Chapitre
-    template_name = "gestion/chapitre_create_form.html"
+    template_name = "gestion/formateur/chapitre_create_form.html"
     form_class = ChapitreForm
     success_url = reverse_lazy('gestion:dash_chapitre')
 
@@ -292,7 +292,7 @@ class CreateChapitre(CreateView):
 
 class UpdateChapitre(UpdateView):
     model = Chapitre
-    template_name = "gestion/chapitre_update_form.html"
+    template_name = "gestion/formateur/chapitre_update_form.html"
     form_class = ChapitreForm
     success_url = reverse_lazy('gestion:dash_chapitre')
 
@@ -305,7 +305,7 @@ class UpdateChapitre(UpdateView):
 class DeleteChapitre(DeleteView):
     model = Chapitre
     context_object_name = "chapitre"
-    template_name = "gestion/chapitre_delete.html"
+    template_name = "gestion/formateur/chapitre_delete.html"
     success_url = reverse_lazy('gestion:dash_chapitre')
 
 
@@ -313,12 +313,12 @@ class DeleteChapitre(DeleteView):
 class ListeRegroupement(ListView):
     model = Regroupement
     context_object_name = "derniers_articles"
-    template_name = "gestion/dash_formateur_regroup.html"
+    template_name = "gestion/formateur/dash_formateur_regroup.html"
 
 
 class CreateRegroupement(CreateView):
     model = Regroupement
-    template_name = "gestion/reg_create_form.html"
+    template_name = "gestion/formateur/reg_create_form.html"
     form_class = RegroupementForm
     success_url = reverse_lazy('gestion:dash_regroup')
 
@@ -329,7 +329,7 @@ class CreateRegroupement(CreateView):
 
 class UpdateRegroupement(UpdateView):
     model = Regroupement
-    template_name = "gestion/reg_update_form.html"
+    template_name = "gestion/formateur/reg_update_form.html"
     form_class = RegroupementForm
     success_url = reverse_lazy('gestion:dash_regroup')
 
@@ -342,7 +342,7 @@ class UpdateRegroupement(UpdateView):
 class DeleteRegroupement(DeleteView):
     model = Regroupement
     context_object_name = "reg"
-    template_name = "gestion/reg_delete.html"
+    template_name = "gestion/formateur/reg_delete.html"
     success_url = reverse_lazy('gestion:dash_regroup')
 
 
@@ -350,12 +350,12 @@ class DeleteRegroupement(DeleteView):
 class ListeTest(ListView):
     model = Test
     context_object_name = "derniers_articles"
-    template_name = "gestion/dash_formateur_test.html"
+    template_name = "gestion/formateur/dash_formateur_test.html"
 
 
 class CreateTest(CreateView):
     model = Test
-    template_name = "gestion/test_create_form.html"
+    template_name = "gestion/formateur/test_create_form.html"
     form_class = TestForm
     success_url = reverse_lazy('gestion:dash_test')
 
@@ -366,7 +366,7 @@ class CreateTest(CreateView):
 
 class UpdateTest(UpdateView):
     model = Test
-    template_name = "gestion/test_update_form.html"
+    template_name = "gestion/formateur/test_update_form.html"
     form_class = TestForm
     success_url = reverse_lazy('gestion:dash_test')
 
@@ -379,5 +379,5 @@ class UpdateTest(UpdateView):
 class DeleteTest(DeleteView):
     model = Test
     context_object_name = "test"
-    template_name = "gestion/test_delete.html"
+    template_name = "gestion/formateur/test_delete.html"
     success_url = reverse_lazy('gestion:dash_test')
