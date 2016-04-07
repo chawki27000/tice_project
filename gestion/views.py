@@ -346,3 +346,38 @@ class DeleteRegroupement(DeleteView):
     success_url = reverse_lazy('gestion:dash_regroup')
 
 
+# CBV : Test
+class ListeTest(ListView):
+    model = Test
+    context_object_name = "derniers_articles"
+    template_name = "gestion/dash_formateur_test.html"
+
+
+class CreateTest(CreateView):
+    model = Test
+    template_name = "gestion/test_create_form.html"
+    form_class = TestForm
+    success_url = reverse_lazy('gestion:dash_test')
+
+    def form_valid(self, form):
+        form.save(commit=False)
+        return super(CreateTest, self).form_valid(form)
+
+
+class UpdateTest(UpdateView):
+    model = Test
+    template_name = "gestion/test_update_form.html"
+    form_class = TestForm
+    success_url = reverse_lazy('gestion:dash_test')
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, "Votre profil a ete mis a jour avec succes.")
+        return redirect('gestion:dash_test')
+
+
+class DeleteTest(DeleteView):
+    model = Test
+    context_object_name = "test"
+    template_name = "gestion/test_delete.html"
+    success_url = reverse_lazy('gestion:dash_test')

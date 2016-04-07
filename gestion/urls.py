@@ -199,4 +199,29 @@ urlpatterns = [
         name='delete_reg'
     ),
 
+    # CRUD (Test)
+    url(
+        regex=r'^test',
+        view=views.ListeTest.as_view(),
+        name='dash_test'
+    ),
+
+    url(
+        regex=r'^t/new$',
+        view=views.CreateTest.as_view(),
+        name='create_t'
+    ),
+
+    url(
+        regex=r'^t/del/(?P<pk>\d+)$',
+        view=views.DeleteTest.as_view(),
+        name='delete_t'
+    ),
+
+    url(
+        regex=r'^t/edit/(?P<pk>\d+)$',
+        view=views.UpdateTest.as_view(),
+        name='update_t'
+    ),
+
 ]

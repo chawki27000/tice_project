@@ -1,0 +1,46 @@
+{% extends "gestion/dashboard.html" %}
+{#{% block title %}Dashboard cotegorie{% endblock %}#}
+{% block content2 %}
+
+    <span class="mdl-layout-title">Note</span>
+
+    {% for article in derniers_articles %}
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--1-col">
+
+                <div class="demo-card-event mdl-card mdl-shadow--2dp">
+                    <div class=" mdl-card--expand">
+                        <h4>
+                            <p class="me_card"><strong>Apprenant: </strong> {{ article.id_util.user.last_name }}
+                                - {{ article.id_util.user.first_name }}</p>
+                        </h4>
+                        <p class="me_card"><strong>Formation : </strong>{{ article.id_form.lib_form }}</p>
+                        <p class="me_card"><strong>Date du teste : </strong>{{ article.date_test }}</p>
+                        <p class="me_card"><strong>Note : </strong>{{ article.note_test }}</p>
+
+
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                           href="{% url "gestion:update_t" article.id %}">
+                            Modifier
+                        </a>
+
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                           href="{% url "gestion:delete_t" article.id %}">
+                            Supprimer
+                        </a>
+                        <div class="mdl-layout-spacer"></div>
+                        <i class="material-icons">event</i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+    <a href="{% url "gestion:create_t" %}" target="_blank" id="view-source"
+       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Ajouter</a>
+
+{% endblock %}
