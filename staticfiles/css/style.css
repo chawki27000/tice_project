@@ -1,0 +1,43 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+nav {
+  background-color: #1976D2;
+}
+
+footer.page-footer {
+  background-color: #212121;
+}
+
+aside.dashboard {
+  background-color: #B6B6B6;
+  min-height: 900px;
+}
+
+.profile-dashboard {
+  height: 100%;
+  padding: 1px;
+}

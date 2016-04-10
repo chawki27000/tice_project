@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+}
+
+#index-cover {
+  margin: 0;
+  width: auto;
+  height: auto;
+  width: 100vw;
+  height: 70vh;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-background-image: url(../images/MOOC-tmp.jpg);
+  -moz-background-image: url(../images/MOOC-tmp.jpg);
+  -o-background-image: url(../images/MOOC-tmp.jpg);
+  background-image: url(../images/MOOC-tmp.jpg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  background-attachment: fixed;
+
+  padding: 7vh;
+
+  color: #727272;
+  text-align: center;
+}
+
+#index-cover h1 {
+  font-weight: bolder;
+}
+
+#index-cover p {
+  font-weight: bold;
+}
+
+.index-layout {
+  text-align: center;
+}
+
+.index-layout i {
+  font-size: 100px;
+}
+
+.mdl-layout__content {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+

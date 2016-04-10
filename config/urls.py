@@ -23,6 +23,7 @@ urlpatterns = [
 
     # Your stuff: custom urls includes go here
     url(r'^gestion/', include('gestion.urls', namespace='gestion')),
+    url(r'^pv/', include('pv.urls', namespace='pv')),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
