@@ -47,6 +47,10 @@ class RessourceForm(forms.ModelForm):
         model = Ressource
         fields = ('lib_ress', 'type_ress', 'chapitre',)
 
+    docfile = forms.FileField(
+        label='joindre un fichier',
+        help_text='max. 42 megabytes')
+
 
 class ChapitreForm(forms.ModelForm):
     class Meta:

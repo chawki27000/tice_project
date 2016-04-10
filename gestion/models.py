@@ -5,7 +5,6 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.conf import settings
 
-
 # Create your models here.
 from tice_project.users.models import User
 
@@ -135,6 +134,7 @@ class Chapitre(TimeStampedModel):
 class Ressource(TimeStampedModel):
     lib_ress = models.CharField(max_length=80)
     type_ress = models.CharField(max_length=50)
+    docfile = models.FileField(upload_to='documents/%Y/%m/%d')
     chapitre = models.ForeignKey('Chapitre')
 
     def get_absolute_url(self):

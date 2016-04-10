@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse_lazy, reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.core.urlresolvers import reverse_lazy
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 
@@ -161,15 +161,25 @@ class ListeRessource(ListView):
     template_name = "gestion/formateur/dash_formateur_ressource.html"
 
 
-class CreateRessource(CreateView):
-    model = Ressource
-    template_name = "gestion/formateur/ressource_create_form.html"
-    form_class = RessourceForm
-    success_url = reverse_lazy('gestion:dash_ressource')
+def create_ressource(request):
+    sauvegarde = False
 
-    def form_valid(self, form):
-        form.save(commit=False)
-        return super(CreateRessource, self).form_valid(form)
+    if request.method == "POST":
+        form = RessourceForm(request.POST, request.FILES)
+        if form.is_valid():
+            contact = Ressource()
+            contact.lib_ress = form.cleaned_data["lib_ress"]
+            contact.type_ress = form.cleaned_data["type_ress"]
+            contact.docfile = form.cleaned_data["docfile"]
+            contact.chapitre = form.cleaned_data["chapitre"]
+            contact.save()
+
+            sauvegarde = True
+            print('hahaha')
+    else:
+        form = RessourceForm()
+
+    return render(request, 'gestion/formateur/ressource_create_form.html', locals())
 
 
 class UpdateRessource(UpdateView):

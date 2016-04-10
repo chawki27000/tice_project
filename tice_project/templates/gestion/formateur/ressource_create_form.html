@@ -2,13 +2,16 @@
 
 {% block content2 %}
 
-    <div class="row">
-        <form action="{% url "gestion:create_ressource" %}" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Valider"/>
+    {% if sauvegarde %}
+        <p>Ce contact a bien été enregistré.</p>
+    {% endif %}
 
-        </form>
-    </div>
+    <p>
+    <form action="{% url "gestion:create_ressource" %}" method="post" enctype="multipart/form-data" action=".">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit"/>
+    </form>
+    </p>
 
 {% endblock %}

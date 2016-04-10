@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include, patterns
 
 from gestion import views
 
@@ -74,11 +74,8 @@ urlpatterns = [
         name='dash_ressource'
     ),
 
-    url(
-        regex=r'^ressource/new$',
-        view=views.CreateRessource.as_view(),
-        name='create_ressource'
-    ),
+    url(r'^ressource/new$', 'gestion.views.create_ressource', name='create_ressource'),
+
 
     url(
         regex=r'^ressource/edit/(?P<pk>\d+)$',
