@@ -1,0 +1,33 @@
+<html>
+<body>
+<h1>Bulletin de notes</h1>
+<br/>
+<ul>
+    <li><strong>Nome : </strong>{{ article.user.last_name }}</li>
+    <li><strong>prenom : </strong>{{ article.user.fist_name }}</li>
+    <li><strong>email : </strong>{{ article.user.email }}</li>
+    <li><strong>Date inscription dans la plateforme : </strong>{{ article.user.date_joined }}</li>
+</ul>
+<table>
+    <thead>
+    <tr>
+        <th>Libellé formation</th>
+        <th>Date début</th>
+        <th>Date fin</th>
+        <th>Categorie</th>
+    </tr>
+    </thead>
+    <tbody>
+{#    {% for ex in article.formation %}#}
+{#    <tr class="row{% cycle "1" "2" %}">#}
+{#        <td>{{ ex.lib_form }}</td>#}
+{#        <td>{{ ex.date_deb_form }}</td>#}
+{#        <td>{{ ex.date_fin_form }}</td>#}
+{#        <td>{{ ex.categorie.lib_categ }}</td>#}
+{#    </tr>#}
+{#    {% endfor %}#}
+    </tbody>
+</table>
+
+</body>
+</html>

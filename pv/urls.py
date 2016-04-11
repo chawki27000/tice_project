@@ -4,5 +4,5 @@ from pv import views
 
 urlpatterns = [
 
-    url(r'^apprenant/pdf/(?P<order_id>\d+)/$', views.admin_order_pdf, name='admin_order_pdf'),
+    url(r'^apprenant/pdf/$', views.note_apprenant, name='admin_order_pdf'),
 ]
