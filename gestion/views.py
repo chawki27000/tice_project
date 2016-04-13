@@ -5,10 +5,12 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
+from rest_framework import viewsets
 
-from gestion.models import Categorie, Formateur, Ressource, Apprenant, Chapitre, Animer, Regroupement, Test, Cours
 from .forms import ChapitreForm, AnimerForm, RegroupementForm, TestForm, CoursForm
 from .forms import LoginForm, UserRegistrationForm, CategorieForm, FormateurForm, RessourceForm, ApprenantForm
+from .serializers import *
+from .models import *
 
 
 # CBV TempleteView :
@@ -431,3 +433,71 @@ class ConsultationView(ListView):
 
     def get_queryset(self):
         return Test.objects.filter(id_util=self.request.user.apprenant.id)
+
+
+"""--------------------------------------- API's Views----------------------------------"""
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+# class TimeStampedModelViewSet(viewsets.ModelViewSet):
+#     queryset = TimeStampedModel.objects.all()
+#     serializer_class = TimeStampedModelSerializer
+
+
+class AdministrateurViewSet(viewsets.ModelViewSet):
+    queryset = Administrateur.objects.all()
+    serializer_class = AdministrateurSerializer
+
+
+class FormateurViewSet(viewsets.ModelViewSet):
+    queryset = Formateur.objects.all()
+    serializer_class = FormateurSerializer
+
+
+class CategorieViewSet(viewsets.ModelViewSet):
+    queryset = Categorie.objects.all()
+    serializer_class = CategorieSerializer
+
+
+class FormationViewSet(viewsets.ModelViewSet):
+    queryset = Formation.objects.all()
+    serializer_class = FormationSerializer
+
+
+class ApprenantViewSet(viewsets.ModelViewSet):
+    queryset = Apprenant.objects.all()
+    serializer_class = ApprenantSerializer
+
+
+class RegroupementViewSet(viewsets.ModelViewSet):
+    queryset = Regroupement.objects.all()
+    serializer_class = RegroupementSerializer
+
+
+class CoursViewSet(viewsets.ModelViewSet):
+    queryset = Cours.objects.all()
+    serializer_class = CoursSerialzer
+
+
+class ChapitreViewSet(viewsets.ModelViewSet):
+    queryset = Chapitre.objects.all()
+    serializer_class = ChapitreSerializer
+
+
+class RessourceViewSet(viewsets.ModelViewSet):
+    queryset = Ressource.objects.all()
+    serializer_class = RessourceSerializer
+
+
+class AnimerViewSet(viewsets.ModelViewSet):
+    queryset = Animer.objects.all()
+    serializer_class = AnimerSerializer
+
+
+class TestViewSet(viewsets.ModelViewSet):
+    queryset = Test.objects.all()
+    serializer_class = TestSerializer
