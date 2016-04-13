@@ -1,6 +1,6 @@
 <html>
 <body>
-<h1>Bulletin de notes</h1>
+<h1>Information Etudiant</h1>
 <br/>
 <ul>
     <li><strong>Nome : </strong>{{ article.user.last_name }}</li>
@@ -8,26 +8,14 @@
     <li><strong>email : </strong>{{ article.user.email }}</li>
     <li><strong>Date inscription dans la plateforme : </strong>{{ article.user.date_joined }}</li>
 </ul>
-<table>
-    <thead>
-    <tr>
-        <th>Libellé formation</th>
-        <th>Date début</th>
-        <th>Date fin</th>
-        <th>Categorie</th>
-    </tr>
-    </thead>
-    <tbody>
-{#    {% for ex in article.formation %}#}
-{#    <tr class="row{% cycle "1" "2" %}">#}
-{#        <td>{{ ex.lib_form }}</td>#}
-{#        <td>{{ ex.date_deb_form }}</td>#}
-{#        <td>{{ ex.date_fin_form }}</td>#}
-{#        <td>{{ ex.categorie.lib_categ }}</td>#}
-{#    </tr>#}
-{#    {% endfor %}#}
-    </tbody>
-</table>
 
+<h3>Inscrit dans la formation suivante : </h3>
+<ul>
+    <li><strong>Libellé formation : </strong>{{ article.formation.lib_form }}</li>
+    <li><strong>Début de la formation : </strong>{{ article.formation.date_deb_form }}</li>
+    <li><strong>Fin de la formation : </strong>{{ article.formation.date_fin_form }}</li>
+    <li><strong>Catégorie de la formation : </strong>{{ article.formation.categorie.lib_categ }}</li>
+
+</ul>
 </body>
 </html>

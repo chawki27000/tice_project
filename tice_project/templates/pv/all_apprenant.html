@@ -1,0 +1,23 @@
+<html>
+<body>
+<h1>Liste des appreant</h1>
+<br/>
+{% for ex in article %}
+<ul>
+    <li><strong>Nome : </strong>{{ ex.user.last_name }}</li>
+    <li><strong>prenom : </strong>{{ ex.user.fist_name }}</li>
+    <li><strong>email : </strong>{{ ex.user.email }}</li>
+    <li><strong>Date inscription dans la plateforme : </strong>{{ ex.user.date_joined }}</li>
+</ul>
+
+<h3>Inscrit dans la formation suivante : </h3>
+<ul>
+    <li><strong>Libellé formation : </strong>{{ ex.formation.lib_form }}</li>
+    <li><strong>Début de la formation : </strong>{{ ex.formation.date_deb_form }}</li>
+    <li><strong>Fin de la formation : </strong>{{ ex.formation.date_fin_form }}</li>
+    <li><strong>Catégorie de la formation : </strong>{{ ex.formation.categorie.lib_categ }}</li>
+
+</ul>
+{% endfor %}
+</body>
+</html>
