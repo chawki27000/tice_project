@@ -1,4 +1,6 @@
 {% extends "gestion/dashboard.html" %}
+{% load material_form %}
+
 
 {% block content2 %}
 
@@ -6,12 +8,14 @@
         <p>Ce contact a bien été enregistré.</p>
     {% endif %}
 
-    <p>
-    <form action="{% url "gestion:create_ressource" %}" method="post" enctype="multipart/form-data" action=".">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit"/>
-    </form>
-    </p>
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+        <p>
+        <form action="{% url "gestion:create_ressource" %}" method="post" enctype="multipart/form-data" action=".">
+            {% csrf_token %}
+            {% form form=form %}{% endform %}
+            <input class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit"/>
+        </form>
+        </p>
+    </div>
 
 {% endblock %}

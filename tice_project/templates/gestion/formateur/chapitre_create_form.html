@@ -1,14 +1,18 @@
 {% extends "gestion/dashboard.html" %}
+{% load material_form %}
 
 {% block content2 %}
 
     <div class="row">
-        <form action="{% url "gestion:create_chapitre" %}" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Valider"/>
+        <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+            <form action="{% url "gestion:create_chapitre" %}" method="post">
+                {% csrf_token %}
+                {% form form=form %}{% endform %}
 
-        </form>
+                <input class="mdl-button mdl-js-button mdl-button--raised" type="submit" value="Valider"/>
+
+            </form>
+        </div>
     </div>
 
 {% endblock %}

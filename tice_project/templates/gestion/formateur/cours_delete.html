@@ -1,9 +1,10 @@
 <h1>Êtes-vous sûr de vouloir supprimer cette URL ?</h1>
 
 <p>voulez vous supprimer : {{ cours.lib_cour }} </p>
-
-<form method="post" action="">
-    {% csrf_token %}
-    <input type="submit" value="Oui supprime moi ça">
-    <a href="{% url "gestion:dash_cours" %}">non, pas tout de suite</a>
-</form>
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+    <form method="post" action="">
+        {% csrf_token %}
+        <input class="mdl-button mdl-js-button mdl-button--raised" type="submit" value="Oui supprime moi ça">
+        <a href="{% url "gestion:dash_cours" %}">non, pas tout de suite</a>
+    </form>
+</div>

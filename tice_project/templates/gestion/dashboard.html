@@ -78,9 +78,9 @@
                     {% if request.user.administrateur.grade_util != "" %}
                         <li class="mdl-menu__item">PV Administrateur</li>
                     {% elif request.user.formateur.spec_formation != "" %}
-                        <li class="mdl-menu__item" ><a href="{% url "pv:dash_formateur" %}">PV Formateur</a></li>
+                        <li class="mdl-menu__item"><a href="{% url "pv:dash_formateur" %}">PV Formateur</a></li>
                     {% else %}
-                        <li class="mdl-menu__item" ><a href="{% url "pv:dash_apprenant" %}">PV Apprenant</a></li>
+                        <li class="mdl-menu__item"><a href="{% url "pv:dash_apprenant" %}">PV Apprenant</a></li>
                     {% endif %}
                     <li class="mdl-menu__item">About</li>
                     <li class="mdl-menu__item">Contact</li>
@@ -260,5 +260,8 @@
 
     <!-- END  :  (Apprenant) Side -->
 
+    {% include 'material/includes/material_css.html' %}
+    <script src="{% static 'material/js/jquery-2.2.0.js' %}"></script>
+    {% include 'material/includes/material_js.html' %}
 
 {% endblock %}

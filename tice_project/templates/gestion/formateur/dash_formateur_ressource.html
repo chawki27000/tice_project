@@ -13,7 +13,8 @@
                         <h4>
                             <p class="me_card"><strong>Libelle: </strong> {{ article.lib_ress }}</p>
                         </h4>
-                        <p class="me_card"><strong>Lien : </strong><a href="{{ article.docfile.url }}">{{ article.docfile.name }}</a></p>
+                        <p class="me_card"><strong>Lien : </strong><a
+                                href="{{ article.docfile.url }}">{{ article.docfile.name }}</a></p>
                         <p class="me_card"><strong>ajoute le : </strong>{{ article.created }}</p>
                         <p class="me_card"><strong>modifie le : </strong>{{ article.modified }}</p>
 
@@ -38,7 +39,11 @@
 
     {% endfor %}
 
-    <a href="{% url "gestion:create_ressource" %}" target="_blank" id="view-source"
-       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Ajouter</a>
+    <!-- Colored FAB button -->
+    <a href="{% url "gestion:create_ressource" %}" id="view-source" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+        <i class="material-icons">add</i>
+    </a>
+
+
 
 {% endblock %}

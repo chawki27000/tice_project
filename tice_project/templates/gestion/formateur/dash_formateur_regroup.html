@@ -38,7 +38,12 @@
 
     {% endfor %}
 
-    <a href="{% url "gestion:create_reg" %}" target="_blank" id="view-source"
-       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Ajouter</a>
+    {#    <a href="{% url "gestion:create_reg" %}" target="_blank" id="view-source"#}
+    {#       class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Ajouter</a>#}
+
+    <!-- Colored FAB button -->
+    <a href="{% url "gestion:create_reg" %}" id="view-source" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+        <i class="material-icons">add</i>
+    </a>
 
 {% endblock %}
