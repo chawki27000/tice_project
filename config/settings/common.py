@@ -45,6 +45,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'tice_project.users',  # custom users app
     # Your stuff: custom apps go here
+    'rest_framework'
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
